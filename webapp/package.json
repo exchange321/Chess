@@ -4,7 +4,10 @@
   "description": "A simple chess platform implemented using JavaScript and ASP.NET",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --progress --inline",
+    "lint": "node_modules/.bin/esw .",
+    "lint:watch": "npm run lint -- --watch",
+    "lint:fix": "noe_modules/.bin/eslint . --fix"
   },
   "keywords": [
     "chess",
@@ -50,6 +53,7 @@
     "html-webpack-plugin": "^2.28.0",
     "style-loader": "^0.16.0",
     "url-loader": "^0.5.8",
-    "webpack": "^2.3.1"
+    "webpack": "^2.3.1",
+    "webpack-dev-server": "^2.5.0"
   }
 }
