@@ -1,12 +1,21 @@
 {
-  "name": "webapp",
+  "name": "chess-platform-webapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple chess platform implemented using JavaScript and ASP.NET",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["chess", "platform", "game platform"],
+  "contributors": [
+    { 
+      "name": "Trung Hieu Tran",
+      "email": "trunghieu.tran@connect.qut.edu.au"
+    }, 
+    {
+      "name": "See Chuen Hong",
+      "email": "see.chuenhong@connect.qut.edu.au"
+    }
+  ],
   "license": "ISC"
 }
