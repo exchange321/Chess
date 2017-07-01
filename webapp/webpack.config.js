@@ -2,6 +2,19 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
+const babelOptionsForTS = {
+  presets: [
+    [
+      'es2015',
+      {
+        modules: false,
+      },
+    ],
+    'stage-0',
+    'es2016',
+  ],
+};
+
 module.exports = {
   devtool: 'source-map',
   entry: [
@@ -21,10 +34,24 @@ module.exports = {
         loaders: ['babel-loader'],
       },
       {
+        test: /\.(ts)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: babelOptionsForTS,
+          },
+          {
+            loader: 'ts-loader',
+          },
+        ],
+      },
+      {
         test: /\.css$/,
         loaders: [
           'style-loader',
           'css-loader?sourceMap',
+          'postcss-loader'
         ],
       },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' },
