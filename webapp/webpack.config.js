@@ -52,7 +52,7 @@ module.exports = {
         loaders: [
           'style-loader',
           'css-loader?sourceMap',
-          'postcss-loader'
+          'postcss-loader',
         ],
       },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' },
@@ -69,4 +69,7 @@ module.exports = {
     }),
     new HtmlWebpackHarddiskPlugin(),
   ],
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+  },
 };

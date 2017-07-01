@@ -1,0 +1,162 @@
+[
+    {
+        "coordinate": "a1",
+        "faction": "white",
+        "piece": "rock"
+    },
+    {
+        "coordinate": "b1",
+        "faction": "white",
+        "piece": "knight"
+    },
+    {
+        "coordinate": "c1",
+        "faction": "white",
+        "piece": "bishop"
+    },
+    {
+        "coordinate": "d1",
+        "faction": "white",
+        "piece": "queen"
+    },
+    {
+        "coordinate": "e1",
+        "faction": "white",
+        "piece": "king"
+    },
+    {
+        "coordinate": "f1",
+        "faction": "white",
+        "piece": "bishop"
+    },
+    {
+        "coordinate": "g1",
+        "faction": "white",
+        "piece": "knight"
+    },
+    {
+        "coordinate": "h1",
+        "faction": "white",
+        "piece": "rock"
+    },
+    {
+        "coordinate": "a2",
+        "faction": "white",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "b2",
+        "faction": "white",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "c2",
+        "faction": "white",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "d2",
+        "faction": "white",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "e2",
+        "faction": "white",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "f2",
+        "faction": "white",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "g2",
+        "faction": "white",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "h2",
+        "faction": "white",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "a7",
+        "faction": "black",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "b7",
+        "faction": "black",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "c7",
+        "faction": "black",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "d7",
+        "faction": "black",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "e7",
+        "faction": "black",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "f7",
+        "faction": "black",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "g7",
+        "faction": "black",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "h7",
+        "faction": "black",
+        "piece": "pawn"
+    },
+    {
+        "coordinate": "a8",
+        "faction": "black",
+        "piece": "rock"
+    },
+    {
+        "coordinate": "b8",
+        "faction": "black",
+        "piece": "knight"
+    },
+    {
+        "coordinate": "c8",
+        "faction": "black",
+        "piece": "bishop"
+    },
+    {
+        "coordinate": "d8",
+        "faction": "black",
+        "piece": "queen"
+    },
+    {
+        "coordinate": "e8",
+        "faction": "black",
+        "piece": "king"
+    },
+    {
+        "coordinate": "f8",
+        "faction": "black",
+        "piece": "bishop"
+    },
+    {
+        "coordinate": "g8",
+        "faction": "black",
+        "piece": "knight"
+    },
+    {
+        "coordinate": "h8",
+        "faction": "black",
+        "piece": "rock"
+    }
+]

@@ -1,3 +1,26 @@
+@custom-media --xs screen and (min-width: 320px);
+@custom-media --sm screen and (min-width: 576px);
+@custom-media --md screen and (min-width: 768px);
+@custom-media --lg screen and (min-width: 992px);
+@custom-media --xl screen and (min-width: 1200px);
+
+@custom-media --xs-only screen and (min-width: 320px) and (max-width: 575px);
+@custom-media --sm-only screen and (min-width: 576px) and (max-width: 767px);
+@custom-media --md-only screen and (min-width: 768px) and (max-width: 991px);
+@custom-media --lg-only screen and (min-width: 992px) and (max-width: 1199px);
+@custom-media --xl-only screen and (min-width: 1200px);
+
+@custom-media --xs-sm screen and (max-width: 767px);
+@custom-media --xs-md screen and (max-width: 991px);
+
+/* LIBRARY - START */
+
+:root {
+
+}
+
+/* LIBRARY - END */
+
 /* GENERAL - START */
 
 body {
@@ -5,3 +28,39 @@ body {
 }
 
 /* GENERAL - END */
+
+/* CHESS BOARD PAGE - START */
+
+div.chess-game-page {
+  min-height: 100vh;
+  position: relative;
+  & .chess-board {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    & .chess-board-cell {
+      flex: 0 12.5%;
+      &.black-cell {
+        background-color: black;
+      }
+      &.white-cell {
+        background-color: white;
+      }
+      &:after {
+        content: '';
+        display: block;
+        padding-bottom: 100%;
+      }
+    }
+  }
+}
+
+/* CHESS BOARD PAGE - END */
