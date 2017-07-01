@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --progress --inline",
     "lint": "node_modules/.bin/esw .",
     "lint:watch": "npm run lint -- --watch",
-    "lint:fix": "noe_modules/.bin/eslint . --fix"
+    "lint:fix": "node_modules/.bin/eslint . --fix"
   },
   "keywords": [
     "chess",
