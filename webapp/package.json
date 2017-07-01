@@ -4,7 +4,7 @@
   "description": "A simple chess platform implemented using JavaScript and ASP.NET",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --inline",
+    "start": "webpack-dev-server --progress --colors --inline",
     "lint": "node_modules/.bin/esw .",
     "lint:watch": "npm run lint -- --watch",
     "lint:fix": "noe_modules/.bin/eslint . --fix"
@@ -63,11 +63,14 @@
     "file-loader": "^0.11.2",
     "html-webpack-harddisk-plugin": "^0.1.0",
     "html-webpack-plugin": "^2.29.0",
+    "postcss-cssnext": "^2.11.0",
+    "postcss-loader": "^2.0.6",
     "style-loader": "^0.18.2",
     "ts-loader": "^2.2.1",
     "tslint": "^5.4.3",
     "typescript": "^2.4.1",
     "url-loader": "^0.5.9",
-    "webpack": "^3.0.0"
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0"
   }
 }
