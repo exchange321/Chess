@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --progress --colors --inline",
     "lint": "node_modules/.bin/esw .",
     "lint:watch": "npm run lint -- --watch",
-    "lint:fix": "noe_modules/.bin/eslint . --fix"
+    "lint:fix": "node_modules/.bin/eslint . --fix"
   },
   "keywords": [
     "chess",
@@ -36,6 +36,7 @@
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
     "react-router-redux": "^4.0.8",
     "react-tap-event-plugin": "^2.0.1",
     "react-transition-group": "^1.2.0",
