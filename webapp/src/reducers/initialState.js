@@ -6,26 +6,26 @@ export default {
     },
     roomListPage: {
         rooms: [
-            {id:1,name:"Room 1",numPlayer:1,status:"Waiting..."},
-            {id:2,name:"Room 2",numPlayer:2,status:"Waiting..."},
-            {id:3,name:"Room 3",numPlayer:2,status:"Playing..."}
+            {roomId:1,name:"Room 1",numPlayer:1,status:"Waiting..."},
+            {roomId:2,name:"Room 2",numPlayer:2,status:"Waiting..."},
+            {roomId:3,name:"Room 3",numPlayer:2,status:"Playing..."}
         ],
     },
     roomDetailPage: {
         info: {
-            id:1,
+            roomId:1,
             roomName:"Room 1"
         },
         slots: [
             {
-                id:0,
+                slotId:0,
                 name:"player 1",
-                status:0
+                isReady:1
             },
             {
-                id:1,
+                slotId:1,
                 name:"computer insane",
-                status:0,
+                isReady:0
             }
         ]
         

@@ -8,3 +8,4 @@ class RoomDetailPage extends React.Component {
 
     }
 }
+export default RoomDetailPage;
