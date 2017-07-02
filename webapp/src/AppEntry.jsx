@@ -1,19 +1,24 @@
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
+import {createStore, compose} from 'redux'
+import {Provider} from 'react-redux'
+import rootReducer from './reducers/rootReducer'
+import AppContainer from './components/AppContainer.jsx'
+import initialState from './reducers/initialState'
 
-import Login from './components/login.jsx';
-import RoomList from './components/roomList.jsx';
-import ChessGamePage from './components/chess-game/ChessGamePage.jsx';
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const enhancer = composeEnhancers();
 
+let store=createStore(
+  rootReducer,
+  initialState,
+  enhancer,
+);
 
 const AppEntry = () => (
-  <HashRouter>
-    <div>
-      <Route exact path="/" component={Login} />
-      <Route path="/rooms" component={RoomList} />
-      <Route path="/chess" component={ChessGamePage} />
-    </div>
-  </HashRouter>
+  <Provider store={store}>
+    <AppContainer/>
+  </Provider>
 );
 
 export default AppEntry;

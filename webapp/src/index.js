@@ -7,7 +7,6 @@ import './index.css';
 
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import AppEntry from './AppEntry.jsx'; // eslint-disable-line import/extensions
 
@@ -20,4 +19,3 @@ injectTapEventPlugin();
 
 
 render(React.createElement(AppEntry), document.querySelector('#app'));
-
