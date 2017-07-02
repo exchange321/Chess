@@ -21,7 +21,9 @@ export type RAW_COORDINATE =
 
 export type RAW_PIECE = 'pawn' | 'rock' | 'knight' | 'bishop' | 'king' | 'queen';
 
-export type COORDINATE = [1 | 2 | 3 | 4 | 5 | 6 | 7 | 8, 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8];
+export type COORDINATE_RANGE = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+export type COORDINATE = [COORDINATE_RANGE, COORDINATE_RANGE];
 
 export type FACTION = 'black' | 'white';
 
@@ -48,4 +50,8 @@ export const initializeChessPiece = (rawPiece: IModePiece): ChessPiece => {
       return new ChessQueen(rawPiece.coordinate, rawPiece.faction);
     }
   }
+};
+
+export const isValidCoordinate = (coordinate: [number, number]): boolean => {
+  return !(coordinate[0] > 8 || coordinate[0] < 1 || coordinate[1] > 8 || coordinate[1] < 1);
 };

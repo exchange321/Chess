@@ -3,6 +3,7 @@
  */
 import {initializeChessPiece} from '../../helper/';
 import IChessBoard from '../../interfaces/chess-board/IChessBoard';
+import IChessMoves from '../../interfaces/chess-piece/IChessMoves';
 import IModePiece from '../../interfaces/mode/IModePiece';
 import normalMode from '../../modes/normalMode.json';
 import ChessPiece from '../chess-piece/ChessPiece';
@@ -14,6 +15,11 @@ class ChessBoard implements IChessBoard {
   constructor(mode: 'normal') {
     this.mode = mode;
     this.pieces = this.initializeChessBoard();
+  }
+
+  public getPiecePossibleMoves(pieceId: string): IChessMoves {
+    const target = this.pieces.filter((piece) => piece.id === pieceId)[0];
+    return target.getPossibleMoves();
   }
 
   private initializeChessBoard(): ChessPiece[] {
