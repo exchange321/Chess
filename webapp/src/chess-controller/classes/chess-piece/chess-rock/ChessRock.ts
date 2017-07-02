@@ -10,14 +10,14 @@ class ChessRock extends ChessPiece implements IChessPiece {
 
   public readonly type: RAW_PIECE = 'rock';
 
-  public getPossibleMoves(): IChessMoves {
+  public getPossibleMoves(pieceCoordinates: COORDINATE[], enemyCoordinates: COORDINATE[]): IChessMoves {
     return {
       moves: [],
       offences: [],
     };
   }
 
-  public validateCoordinate(coordinate?: COORDINATE): boolean {
+  public isValidPieceCoordinate(coordinate?: COORDINATE): boolean {
     return true;
   }
 }

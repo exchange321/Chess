@@ -53,9 +53,9 @@ abstract class ChessPiece implements IChessPiece {
     this.faction = faction;
   }
 
-  public abstract getPossibleMoves(): IChessMoves;
+  public abstract getPossibleMoves(pieceCoordinates: COORDINATE[], enemyCoordinates: COORDINATE[]): IChessMoves;
 
-  public abstract validateCoordinate(coordinate?: COORDINATE): boolean;
+  public abstract isValidPieceCoordinate(coordinate?: COORDINATE): boolean;
 }
 
 export default ChessPiece;

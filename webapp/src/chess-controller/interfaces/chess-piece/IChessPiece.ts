@@ -7,8 +7,8 @@ import IChessMoves from '../../interfaces/chess-piece/IChessMoves';
 interface IChessPiece {
   coordinate: COORDINATE;
   faction: FACTION;
-  getPossibleMoves: () => IChessMoves;
-  validateCoordinate: (coordinate?: COORDINATE) => boolean;
+  getPossibleMoves: (pieceCoordinates: COORDINATE[], enemyCoordinates: COORDINATE[]) => IChessMoves;
+  isValidPieceCoordinate: (coordinate?: COORDINATE) => boolean;
 }
 
 export default IChessPiece;

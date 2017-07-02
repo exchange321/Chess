@@ -52,6 +52,15 @@ export const initializeChessPiece = (rawPiece: IModePiece): ChessPiece => {
   }
 };
 
-export const isValidCoordinate = (coordinate: [number, number]): boolean => {
+export const isCoordinateInScope = (coordinate: [number, number]): boolean => {
   return !(coordinate[0] > 8 || coordinate[0] < 1 || coordinate[1] > 8 || coordinate[1] < 1);
+};
+
+export const arraysHasArray = (arrays: Array<[number, number]>, target: [number, number]): boolean => {
+  for (const array of arrays) {
+    if (array[0] === target[0] && array[1] === target[1]) {
+      return true;
+    }
+  }
+  return false;
 };
