@@ -1,8 +1,9 @@
 import initialState from './initialState';
+import { ROOM_LIST_ACTIONS } from '../actions/actionTypes';
 
 const roomListReducer = (state = initialState.roomListPage, action) => {
   switch (action.type) {
-    case 'ADD_ROOM':
+    case ROOM_LIST_ACTIONS.ADD_ROOM: {
       return Object.assign({}, state, {
         rooms: [
           ...state.rooms,
@@ -14,8 +15,11 @@ const roomListReducer = (state = initialState.roomListPage, action) => {
           },
         ],
       });
-    default:
+    }
+    default: {
       return state;
+    }
   }
 };
+
 export default roomListReducer;

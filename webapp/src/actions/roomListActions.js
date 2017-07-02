@@ -1,5 +1,7 @@
+import { ROOM_LIST_ACTIONS } from './actionTypes';
+
 export const addRoom = (id, name) => ({
-  TYPE: 'ADD_ROOM',
+  TYPE: ROOM_LIST_ACTIONS.ADD_ROOM,
   id,
   name,
   player: 1,

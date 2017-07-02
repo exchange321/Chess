@@ -6,4 +6,5 @@ const loginReducer = (state = initialState.loginPage, action) => {
       return state;
   }
 };
+
 export default loginReducer;
