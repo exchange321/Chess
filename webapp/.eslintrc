@@ -5,8 +5,6 @@
         "browser": true
     },
     "rules": {
-        "import/extensions": [1, "never", {
-            "jsx": "always"
-        }]
+        "import/extensions": [1, "never", { "jsx": "always" }]
     }
 }
