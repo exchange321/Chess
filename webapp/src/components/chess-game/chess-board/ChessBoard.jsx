@@ -44,6 +44,7 @@ class ChessBoard extends Component {
 
   handlePieceClick = (pieceId) => {
     const moves = this.state.chessBoard.getPiecePossibleMoves(pieceId);
+// eslint-disable-next-line no-console
     console.log(moves);
   };
 
