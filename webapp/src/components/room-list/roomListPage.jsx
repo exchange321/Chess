@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Room from './Room.jsx'
 
 class RoomList extends React.Component {
     constructor(props) {
@@ -17,11 +18,11 @@ class RoomList extends React.Component {
         }
         return (
             <div>
-                <div>Hello, {this.props.user_name} !</div>
+                <div>Hello, {this.props.userName}!</div>
                 <div>Rooms:</div>
                 <div style={roomStyle} className="list-group">
                     {this.props.rooms.map(room => (
-                        <Room key={room.id} {...room} onClick={this.joinRoomClick(room.id) }/>
+                        <Room key={room.id} {...room} onClick={this.joinRoomClick}/>
                     ))}
                 </div>
                 <button type="button" className="btn btn-default" onClick={this.createRoomClick}>CREATE ROOM</button>
@@ -32,19 +33,18 @@ class RoomList extends React.Component {
     createRoomClick = (e) => {
         console.log("create room click");
     }
-    joinRoomClick = (roomId) = {
+    
+    joinRoomClick = (roomId) => {
         console.log("Join room id = ",roomId);
     }
 }
 
 
-const mapStateToProps = ({ roomListPage }) => {
-  return ...roomListPage;
+const mapStateToProps = ({ roomListPage, loginPage: { userName } }) => {
+  return {
+      ...roomListPage,
+      userName,
+  };
 }
 
-const VisibleRooms = connect(
-  mapStateToProps,
-  null
-)(RoomList)
-
-export default VisibleRooms
+export default connect(mapStateToProps)(RoomList)

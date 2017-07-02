@@ -1,7 +1,8 @@
 
 export default {
     loginPage: {
-        isLogin: false
+        isLogin: false,
+        userName:"jason106"
     },
     roomListPage: {
         rooms: [

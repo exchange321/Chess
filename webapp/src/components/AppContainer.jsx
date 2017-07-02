@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
-import Login from './login/loginPage.jsx'
-import VisibleRooms from './room-list/roomListPage.jsx'
-
+import LoginPage from './login/loginPage.jsx'
+import RoomListPage from './room-list/roomListPage.jsx'
+import {HashRouter, BrowserRouter, Route, Switch} from 'react-router-dom'
 
 class AppContainer extends Component {
     render() {
         return (
+            <BrowserRouter>
             <div className="app-container">
-                <HashRouter>
                     <div>
-                    <Route exact path="/" component={Login} />
-                    <Route path="/rooms" component={VisibleRooms} />
+                    <Switch>
+                    <Route exact path="/" component={LoginPage} />
+                    <Route exact path="/rooms" component={RoomListPage} />
+                    </Switch>
                     </div>
-                </HashRouter>
             </div>
+            </BrowserRouter>
         );
     }
 }
