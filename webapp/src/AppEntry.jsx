@@ -1,18 +1,17 @@
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
+import {createStore} from 'redux'
+import {Provider} from 'react-redux'
+import rootReducer from './reducers/rootReducer'
 
-import Login from './components/login.jsx';
-import RoomList from './components/roomList.jsx';
+import AppContainer from './components/AppContainer.jsx'
 
+let store=createStore(rootReducer, [])
 
 const AppEntry = () => (
-  <HashRouter>
-    <div>
-      <Route exact path="/" component={Login} />
-      <Route path="/rooms" component={RoomList} />
-    </div>
-  </HashRouter>
-
+  <Provider store={store}>
+    <AppContainer/>
+  </Provider>
 );
 
 export default AppEntry;
