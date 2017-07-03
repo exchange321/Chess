@@ -1,4 +1,3 @@
-
 export default {
     loginPage: {
         isLogin: false,

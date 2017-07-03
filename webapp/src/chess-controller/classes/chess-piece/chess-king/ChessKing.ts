@@ -1,17 +1,23 @@
 /**
  * Created by Wayuki on 2017-07-01.
  */
-import { COORDINATE } from '../../../helper';
+import { COORDINATE, RAW_PIECE } from '../../../helper';
+import IChessMoves from '../../../interfaces/chess-piece/IChessMoves';
 import IChessPiece from '../../../interfaces/chess-piece/IChessPiece';
 import ChessPiece from '../ChessPiece';
 
 class ChessKing extends ChessPiece implements IChessPiece {
 
-  public getPossibleMoves(): COORDINATE[] {
-    return [[1, 1]];
+  public readonly type: RAW_PIECE = 'king';
+
+  public getPossibleMoves(pieceCoordinates: COORDINATE[], enemyCoordinates: COORDINATE[]): IChessMoves {
+    return {
+      moves: [],
+      offences: [],
+    };
   }
 
-  public validateCoordinate(coordinate?: COORDINATE): boolean {
+  public isValidPieceCoordinate(coordinate?: COORDINATE): boolean {
     return true;
   }
 }

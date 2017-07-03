@@ -12,13 +12,21 @@ class RoomList extends React.Component {
     }
    
     render() {
+        let textStyle={
+            fontSize:"32px",
+            fontFamily:"monospace",
+            padding:10
+        }
+        let roomStyle = {
+            padding:20
+        }
         return (
             <div>
                 <div>Hello, {this.props.userName}!</div>
                 <div>Rooms:</div>
-                <div className="list-group">
+                <div style={roomStyle} className="list-group">
                     {this.props.rooms.map(room => (
-                        <Room key={room.roomId} {...room} onClick={this.joinRoomClick}/>
+                        <Room key={room.id} {...room} onClick={this.joinRoomClick}/>
                     ))}
                 </div>
                 <button type="button" className="btn btn-default" onClick={this.toggleModal}>CREATE ROOM</button>
@@ -47,6 +55,7 @@ class RoomList extends React.Component {
     }
     createRoomClick=(e) => {
         console.log("create a room, name=");
+
     }
     
     joinRoomClick = (roomId) => {

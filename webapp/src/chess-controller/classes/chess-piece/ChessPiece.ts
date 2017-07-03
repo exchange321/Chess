@@ -1,11 +1,14 @@
 /**
  * Created by Wayuki on 2017-07-01.
  */
-import { COORDINATE, FACTION, RAW_COORDINATE } from '../../helper';
+import { COORDINATE, FACTION, RAW_COORDINATE, RAW_PIECE } from '../../helper';
+import IChessMoves from '../../interfaces/chess-piece/IChessMoves';
 import IChessPiece from '../../interfaces/chess-piece/IChessPiece';
 
 abstract class ChessPiece implements IChessPiece {
 
+  public readonly id: string = ((+new Date()) + Math.random() * 100).toString(32);
+  public abstract readonly type: RAW_PIECE;
   public coordinate: COORDINATE;
   public faction: FACTION;
 
@@ -50,9 +53,9 @@ abstract class ChessPiece implements IChessPiece {
     this.faction = faction;
   }
 
-  public abstract getPossibleMoves(): COORDINATE[];
+  public abstract getPossibleMoves(pieceCoordinates: COORDINATE[], enemyCoordinates: COORDINATE[]): IChessMoves;
 
-  public abstract validateCoordinate(coordinate?: COORDINATE): boolean;
+  public abstract isValidPieceCoordinate(coordinate?: COORDINATE): boolean;
 }
 
 export default ChessPiece;

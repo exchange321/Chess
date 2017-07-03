@@ -1,5 +1,7 @@
-import React from 'react' 
+import React from 'react';
+import PropTypes from 'prop-types';
 
+// eslint-disable-next-line no-unused-vars
 const Room = ({ roomId, name, numPlayer, status, onClick }) => (
     <button type="button" className="list-group-item list-group-item-action" 
         onClick={e => onClick(roomId)}>
@@ -14,4 +16,12 @@ const Room = ({ roomId, name, numPlayer, status, onClick }) => (
     </button>
 ) 
 
-export default Room
+Room.propTypes = {
+  roomId: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  numPlayer: PropTypes.number.isRequired,
+  status: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
+export default Room;
