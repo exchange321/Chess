@@ -4,6 +4,15 @@ import { connect } from 'react-redux'
 import Room from './Room.jsx'
 
 class RoomList extends React.Component {
+    static propTypes = {
+    userName: PropTypes.string.isRequired,
+    rooms: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      numPlayer: PropTypes.number.isRequired,
+      status: PropTypes.string.isRequired,
+    })).isRequired,
+  };
     constructor(props) {
         super(props);
         this.state = {
@@ -12,19 +21,11 @@ class RoomList extends React.Component {
     }
    
     render() {
-        let textStyle={
-            fontSize:"32px",
-            fontFamily:"monospace",
-            padding:10
-        }
-        let roomStyle = {
-            padding:20
-        }
         return (
             <div>
                 <div>Hello, {this.props.userName}!</div>
                 <div>Rooms:</div>
-                <div style={roomStyle} className="list-group">
+                <div  className="list-group">
                     {this.props.rooms.map(room => (
                         <Room key={room.id} {...room} onClick={this.joinRoomClick}/>
                     ))}
@@ -54,11 +55,13 @@ class RoomList extends React.Component {
         });
     }
     createRoomClick=(e) => {
+        // eslint-disable-next-line no-console
         console.log("create a room, name=");
 
     }
     
     joinRoomClick = (roomId) => {
+        // eslint-disable-next-line no-console
         console.log("Join room id = ",roomId);
     }
 }
