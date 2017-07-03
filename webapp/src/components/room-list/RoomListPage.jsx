@@ -3,7 +3,7 @@ import { Col,Label,Input, Button, Modal, ModalHeader, ModalBody, ModalFooter } f
 import { connect } from 'react-redux'
 import Room from './Room.jsx'
 
-class RoomList extends React.Component {
+class RoomListPage extends React.Component {
     static propTypes = {
     userName: PropTypes.string.isRequired,
     rooms: PropTypes.arrayOf(PropTypes.shape({
@@ -74,4 +74,4 @@ const mapStateToProps = ({ roomListPage, loginPage: { userName } }) => {
   };
 }
 
-export default connect(mapStateToProps)(RoomList)
+export default connect(mapStateToProps)(RoomListPage)
