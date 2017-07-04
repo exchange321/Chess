@@ -5,5 +5,5 @@ const roomDetailReducer = (state = initialState.roomDetailPage, action) => {
         default:
             return state;
     }
-}
+};
 export default roomDetailReducer;
