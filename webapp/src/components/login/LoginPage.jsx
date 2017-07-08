@@ -1,10 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { routerActions } from 'react-router-redux';
 
+@connect(
+  null,
+  dispatch => ({
+    routerActions: bindActionCreators(routerActions, dispatch),
+  }),
+)
 class LoginPage extends React.Component {
+  static propTypes = {
+    routerActions: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+    }).isRequired,
+  };
   submitClick = (e) => {
     e.preventDefault();
-// eslint-disable-next-line no-console
-    console.log('submit click');
+    this.props.routerActions.push('/lobby');
   };
 
   render() {

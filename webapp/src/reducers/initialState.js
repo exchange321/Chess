@@ -7,9 +7,9 @@ export default {
   },
   lobbyPage: {
     rooms: [
-      { roomId: 1, name: 'Room 1', numPlayer: 1, status: 'Waiting...' },
-      { roomId: 2, name: 'Room 2', numPlayer: 2, status: 'Waiting...' },
-      { roomId: 3, name: 'Room 3', numPlayer: 2, status: 'Playing...' },
+      { id: 1, name: 'Room 1', numPlayer: 1, status: 'Waiting...' },
+      { id: 2, name: 'Room 2', numPlayer: 2, status: 'Waiting...' },
+      { id: 3, name: 'Room 3', numPlayer: 2, status: 'Playing...' },
     ],
   },
   roomPage: {
