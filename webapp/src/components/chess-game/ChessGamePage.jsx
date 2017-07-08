@@ -42,3 +42,4 @@ class ChessGamePage extends Component {
 }
 
 export default ChessGamePage;
+
