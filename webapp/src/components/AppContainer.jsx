@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import LoginPage from './login/LoginPage.jsx';
-import RoomListPage from './room-list/RoomListPage.jsx';
+import LobbyPage from './lobby/LobbyPage.jsx';
+import RoomPage from './room/RoomPage.jsx';
 import ChessGamePage from './chess-game/ChessGamePage.jsx';
 
 const AppContainer = () => (
@@ -10,7 +11,8 @@ const AppContainer = () => (
       <div>
         <Switch>
           <Route exact path="/" component={LoginPage} />
-          <Route exact path="/rooms" component={RoomListPage} />
+          <Route exact path="/lobby" component={LobbyPage} />
+          <Route exact path="/room" component={RoomPage} />
           <Route exact path="/game" component={ChessGamePage} />
         </Switch>
       </div>

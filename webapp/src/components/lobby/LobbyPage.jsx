@@ -4,7 +4,7 @@ import { Col, Label, Input, Button, Modal, ModalHeader, ModalBody, ModalFooter }
 import { connect } from 'react-redux';
 import Room from './Room.jsx';
 
-class RoomListPage extends React.Component {
+class LobbyPage extends React.Component {
   static propTypes = {
     userName: PropTypes.string.isRequired,
     rooms: PropTypes.arrayOf(PropTypes.shape({
@@ -26,7 +26,7 @@ class RoomListPage extends React.Component {
       modal: !this.state.modal,
     });
   };
-  createRoomClick=() => {
+  createRoomClick = () => {
     // eslint-disable-next-line no-console
     console.log('create a room, name=');
   };
@@ -44,7 +44,7 @@ class RoomListPage extends React.Component {
         <div className="list-group">
           {this.props.rooms.map(room => (
             <Room key={room.id} {...room} onClick={this.joinRoomClick} />
-                    ))}
+          ))}
         </div>
         <button type="button" className="btn btn-default" onClick={this.toggleModal}>CREATE ROOM</button>
         <Modal isOpen={this.state.modal} toggle={this.toggleModal} className="create-room-modal">
@@ -72,4 +72,4 @@ const mapStateToProps = ({ roomListPage, loginPage: { userName } }) => ({
   userName,
 });
 
-export default connect(mapStateToProps)(RoomListPage);
+export default connect(mapStateToProps)(LobbyPage);
