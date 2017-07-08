@@ -142,85 +142,95 @@ div.chess-game-page {
           left: 87.5%;
         }
         .chess-board-piece {
-           position: absolute;
-           top: 5px;
-           right: 5px;
-           bottom: 5px;
-           left: 5px;
-           border-radius: 50%;
-           @media #{$--xs} {
-             font-size: 1.5em;
-           }
-           @media #{$--sm} {
-             font-size: 2em;
-           }
-           @media #{$--md} {
-             font-size: 2.5em;
-           }
-           @media #{$--lg} {
-             font-size: 4em;
-           }
-           @media #{$--xl} {
-             font-size: 4em;
-           }
-           &:hover {
-             cursor: auto;
-           }
-           &:after {
-             content: '';
-             font-family: 'chess';
-             position: absolute;
-             top: 50%;
-             left: 50%;
-             -webkit-transform: translate(-50%, -50%);
-             -moz-transform: translate(-50%, -50%);
-             -ms-transform: translate(-50%, -50%);
-             -o-transform: translate(-50%, -50%);
-             transform: translate(-50%, -50%);
-           }
-           &.chess-piece-active:hover {
-             cursor: pointer;
-           }
-           &.chess-white {
-             background: white radial-gradient(white, #ccc);
-             -webkit-box-shadow: 0 0 30px 0 #ccc;
-             -moz-box-shadow: 0 0 30px 0 #ccc;
-             box-shadow: 0 0 30px 0 #ccc;
-             &:after {
-               color: black;
-             }
-           }
-           &.chess-black {
-             background: black radial-gradient(black, #444);
-             -webkit-box-shadow: 0 0 30px 0 #444;
-             -moz-box-shadow: 0 0 30px 0 #444;
-             box-shadow: 0 0 30px 0 #444;
-             &:after {
-               color: white;
-             }
-           }
-           &.chess-type-pawn:after {
-             content: 'p';
-           }
-           &.chess-type-rock:after {
-             content: 'r';
-           }
-           &.chess-type-knight:after {
-             content: 'h';
-           }
-           &.chess-type-bishop:after {
-             content: 'b';
-           }
-           &.chess-type-king:after {
-             content: 'k';
-           }
-           &.chess-type-queen:after {
-             content: 'q';
-           }
-           &.chess-move-moves {
-             opacity: .5;
-           }
-         }
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          bottom: 5px;
+          left: 5px;
+          border-radius: 50%;
+          @media #{$--xs} {
+            font-size: 1.5em;
+          }
+          @media #{$--sm} {
+            font-size: 2em;
+          }
+          @media #{$--md} {
+            font-size: 2.5em;
+          }
+          @media #{$--lg} {
+            font-size: 4em;
+          }
+          @media #{$--xl} {
+            font-size: 4em;
+          }
+          &:hover {
+            cursor: auto;
+          }
+          &:after {
+            content: '';
+            font-family: 'chess';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+          }
+          &.chess-piece-active:hover {
+            cursor: pointer;
+          }
+          &.chess-white {
+            background: white radial-gradient(white, #ccc);
+            -webkit-box-shadow: 0 0 30px 0 #ccc;
+            -moz-box-shadow: 0 0 30px 0 #ccc;
+            box-shadow: 0 0 30px 0 #ccc;
+            &:after {
+              color: black;
+            }
+          }
+          &.chess-black {
+            background: black radial-gradient(black, #444);
+            -webkit-box-shadow: 0 0 30px 0 #444;
+            -moz-box-shadow: 0 0 30px 0 #444;
+            box-shadow: 0 0 30px 0 #444;
+            &:after {
+              color: white;
+            }
+          }
+          &.chess-type-pawn:after {
+            content: 'p';
+          }
+          &.chess-type-rock:after {
+            content: 'r';
+          }
+          &.chess-type-knight:after {
+            content: 'h';
+          }
+          &.chess-type-bishop:after {
+            content: 'b';
+          }
+          &.chess-type-king:after {
+            content: 'k';
+          }
+          &.chess-type-queen:after {
+            content: 'q';
+          }
+          &.chess-move-moves {
+            opacity: .5;
+          }
+          &.chess-move-offences {
+            opacity: .5;
+            background: red;
+            -webkit-box-shadow: 0 0 2rem 0 red;
+            -moz-box-shadow: 0 0 2rem 0 red;
+            box-shadow: 0 0 2rem 0 red;
+            &:after {
+              content: '';
+            }
+          }
+        }
       }
     }
   }
