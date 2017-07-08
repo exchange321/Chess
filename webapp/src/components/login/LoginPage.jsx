@@ -29,7 +29,6 @@ class LoginPage extends React.Component {
   }
   submitClick = (e) => {
     e.preventDefault();
-    e.preventDefault();
     if (this.state.username === 'admin' && this.state.password === '123456') {
       // eslint-disable-next-line no-console
       console.log('Login successfuly');

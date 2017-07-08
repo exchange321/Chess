@@ -1,32 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
 
 // eslint-disable-next-line no-unused-vars
-const Room = ({ id, name, numPlayer, status, onClick }) => (
-  <button
-    type="button"
-    className="list-group-item list-group-item-action"
-    onClick={() => onClick(id)}
-  >
-    <div>
-            ID #{id}: {name} - (Status: {status})
-        </div>
-    <i key="icon_1" className="fa fa-user-circle" aria-hidden="true" />
-    {
-      numPlayer === 2 ?
-        <i key="icon_2" className="fa fa-user-circle" aria-hidden="true" />
-        : <i key="icon_2" className="fa fa-circle-o" aria-hidden="true" />
-    }
-
-  </button>
+const Room = ({ roomId, roomName, owner, numPlayer }) => (
+  <TableRow>
+    <TableRowColumn>{roomId}</TableRowColumn>
+    <TableRowColumn>{roomName}</TableRowColumn>
+    <TableRowColumn>
+      {owner.playerName}
+    </TableRowColumn>
+    <TableRowColumn>{numPlayer}/2</TableRowColumn>
+  </TableRow>
 );
 
 Room.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
+  roomId: PropTypes.number.isRequired,
+  roomName: PropTypes.string.isRequired,
   numPlayer: PropTypes.number.isRequired,
-  status: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  owner: PropTypes.shape({
+    playerId: PropTypes.number.isRequired,
+    playerName: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Room;

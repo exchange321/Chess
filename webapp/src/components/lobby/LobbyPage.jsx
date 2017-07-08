@@ -1,3 +1,12 @@
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+} from 'material-ui/Table';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Col, Label, Input, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
@@ -37,31 +46,57 @@ class LobbyPage extends React.Component {
   };
 
   render() {
+    const containertableStyle = {
+      padding: '3% 5%',
+    };
     return (
-      <div>
-        <div>Hello, {this.props.userName}!</div>
-        <div>Rooms:</div>
-        <div className="list-group">
-          {this.props.rooms.map(room => (
-            <Room key={room.id} {...room} onClick={this.joinRoomClick} />
-          ))}
+      <MuiThemeProvider>
+        <div>
+          <div className="modal-container">
+            <Modal isOpen={this.state.modal} toggle={this.toggleModal} className="create-room-modal">
+              <ModalHeader toggle={this.toggle}>
+                <br />
+                <div>Create a room</div>
+              </ModalHeader>
+              <ModalBody>
+                <Label sm={40}>Enter a name:</Label>
+                <Col sm={10}>
+                  <Input type="text" name="Enter a name:" id="roomName" placeholder="Room 1" />
+                </Col>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="primary" onClick={this.createRoomClick}>Create a room</Button>{' '}
+                <Button color="secondary" onClick={this.toggleModal}>Cancel</Button>
+              </ModalFooter>
+            </Modal>
+          </div>
+          <div>
+            <AppBar
+              title={`Welcome, ${this.props.userName}`}
+            />
+          </div>
+          <div>
+            <div className="lobby-Container" style={containertableStyle}>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHeaderColumn>ID</TableHeaderColumn>
+                    <TableHeaderColumn>Name</TableHeaderColumn>
+                    <TableHeaderColumn>Owner</TableHeaderColumn>
+                    <TableHeaderColumn>Number of player</TableHeaderColumn>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {this.props.rooms.map(room => (
+                    <Room key={room.id} {...room} />
+                  ))}
+                </TableBody>
+              </Table>
+              <button type="button" className="btn btn-success" onClick={this.toggleModal}>CREATE ROOM</button>
+            </div>
+          </div>
         </div>
-        <button type="button" className="btn btn-success" onClick={this.toggleModal}>CREATE ROOM</button>
-        <Modal isOpen={this.state.modal} toggle={this.toggleModal} className="create-room-modal">
-          <ModalHeader toggle={this.toggle}>Create a room</ModalHeader>
-          <ModalBody>
-            <Label sm={40}>Enter a name:</Label>
-            <Col sm={10}>
-              <Input type="text" name="Enter a name:" id="roomName" placeholder="Room 1" />
-            </Col>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.createRoomClick}>Create a room</Button>{' '}
-            <Button color="secondary" onClick={this.toggleModal}>Cancel</Button>
-          </ModalFooter>
-        </Modal>
-
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
