@@ -13,8 +13,8 @@ const ChessPiece = ({ piece, onPieceClick, turn }) => (
       className={`chess-board-piece chess-${piece.faction} chess-type-${piece.type} ${turn === piece.faction ? 'chess-piece-active' : ''}`}
       onClick={
         turn === piece.faction ?
-          () => onPieceClick(piece.id) :
-          () => onPieceClick(piece.id)
+          () => onPieceClick(piece) :
+          () => onPieceClick(piece)
       }
     />
   </div>

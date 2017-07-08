@@ -2,21 +2,41 @@
  * Created by Wayuki on 2017-07-01.
  */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import ChessBoardCell from './chess-board-cell/ChessBoardCell.jsx';
 import ChessBoardClass from '../../../chess-controller/classes/chess-board/ChessBoard.ts';
+import ChessPieceClass from '../../../chess-controller/classes/chess-piece/ChessPiece.ts';
 import ChessPiece from './chess-piece/ChessPiece.jsx';
+import ChessMove from './chess-move/ChessMove.jsx';
+import * as chessGameActions from '../../../actions/chessGameActions';
 
+@connect(
+  ({ chessGamePage }) => ({
+    ...chessGamePage,
+  }),
+  dispatch => ({
+    actions: bindActionCreators(chessGameActions, dispatch),
+  }),
+)
 class ChessBoard extends Component {
-  state = {
-    turn: 'white',
-    chessBoard: [],
+  static propTypes = {
+    turn: PropTypes.string.isRequired,
+    chessBoard: PropTypes.instanceOf(ChessBoardClass).isRequired,
+    activePiece: PropTypes.instanceOf(ChessPieceClass),
+    showMoves: PropTypes.bool.isRequired,
+    moves: PropTypes.shape({
+      moves: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number.isRequired)).isRequired,
+      offences: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number.isRequired)).isRequired,
+    }).isRequired,
+    actions: PropTypes.shape({
+      registerMoves: PropTypes.func.isRequired,
+    }).isRequired,
   };
-
-  componentWillMount() {
-    this.setState({
-      chessBoard: new ChessBoardClass('normal'),
-    });
-  }
+  static defaultProps = {
+    activePiece: null,
+  };
 
   getPieceProp = (val) => {
     const row = 8 - Math.floor(val / 8);
@@ -42,13 +62,19 @@ class ChessBoard extends Component {
     return prop;
   };
 
-  handlePieceClick = (pieceId) => {
-    const moves = this.state.chessBoard.getPiecePossibleMoves(pieceId);
-// eslint-disable-next-line no-console
-    console.log(moves);
+  handlePieceClick = (piece) => {
+    const moves = this.props.chessBoard.getPiecePossibleMoves(piece.id);
+    this.props.actions.registerMoves(moves, piece);
   };
 
   render() {
+    const {
+      moves,
+      chessBoard,
+      activePiece,
+      turn,
+      showMoves,
+    } = this.props;
     return (
       <div className="chess-board">
         <div className="chess-board-cells">
@@ -63,14 +89,23 @@ class ChessBoard extends Component {
         </div>
         <div className="chess-board-pieces">
           {
-            this.state.chessBoard.pieces.map(piece => (
+            chessBoard.pieces.map(piece => (
               <ChessPiece
                 key={piece.id}
                 piece={piece}
-                turn={this.state.turn}
+                turn={turn}
                 onPieceClick={this.handlePieceClick}
               />
-            ))
+            )).concat(
+              showMoves ? Object.keys(moves).map(moveType => moves[moveType].map(move => (
+                <ChessMove
+                  piece={activePiece}
+                  coordinate={move}
+                  moveType={moveType}
+                  onPieceClick={() => {}}
+                />
+              ))) : null,
+            )
           }
         </div>
       </div>

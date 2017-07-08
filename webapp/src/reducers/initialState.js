@@ -1,3 +1,5 @@
+import ChessBoard from '../chess-controller/classes/chess-board/ChessBoard.ts';
+
 export default {
   loginPage: {
     isLogin: false,
@@ -28,6 +30,15 @@ export default {
         isReady: 0,
       },
     ],
-
+  },
+  chessGamePage: {
+    chessBoard: new ChessBoard('normal'),
+    activePiece: null,
+    showMoves: false,
+    turn: 'white',
+    moves: {
+      moves: [],
+      offences: [],
+    },
   },
 };

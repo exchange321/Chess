@@ -6,7 +6,7 @@ import 'babel-polyfill';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import './fonts/stylesheet.css';
-import './index.css';
+import './index.scss';
 
 import AppEntry from './AppEntry.jsx'; // eslint-disable-line import/extensions
 

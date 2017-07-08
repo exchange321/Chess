@@ -1,0 +1,229 @@
+$--xs: "screen and (min-width: 320px)";
+$--sm: "screen and (min-width: 576px)";
+$--md: "screen and (min-width: 768px)";
+$--lg: "screen and (min-width: 992px)";
+$--xl: "screen and (min-width: 1200px)";
+
+$--xs-only: "screen and (min-width: 320px) and (max-width: 575px)";
+$--sm-only: "screen and (min-width: 576px) and (max-width: 767px)";
+$--md-only: "screen and (min-width: 768px) and (max-width: 991px)";
+$--lg-only: "screen and (min-width: 992px) and (max-width: 1199px)";
+$--xl-only: "screen and (min-width: 1200px)";
+
+$--xs-sm: "screen and (max-width: 767px)";
+$--xs-md: "screen and (max-width: 991px)";
+
+/* LIBRARY - START */
+
+@mixin --cover() {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* LIBRARY - END */
+
+/* GENERAL - START */
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* GENERAL - END */
+
+/* CHESS BOARD PAGE - START */
+
+div.chess-game-page {
+  min-height: 100vh;
+  position: relative;
+  .chess-board {
+    border: solid transparent;
+    -webkit-border-image: url('./images/chess-border.png') 25 round;
+    -moz-border-image: url('./images/chess-border.png') 25 round;
+    -o-border-image: url('./images/chess-border.png') 25 round;
+    border-image: url('./images/chess-border.png') 25 round;
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    @media #{$--xs} {
+      border-width: 25px;
+    }
+    @media #{$--sm} {
+      border-width: 30px;
+    }
+    @media #{$--md} {
+      border-width: 35px;
+    }
+    @media #{$--lg} {
+      border-width: 40px;
+    }
+    @media #{$--xl} {
+      border-width: 45px;
+    }
+    .chess-board-cells {
+      display: flex;
+      flex-wrap: wrap;
+      .chess-board-cell {
+        flex: 0 12.5%;
+        &.black-cell {
+          background: black url('./images/chess-black.png') center/cover no-repeat;
+        }
+        &.white-cell {
+          background: white url('./images/chess-white.png') center/cover no-repeat;
+        }
+        &:after {
+          content: '';
+          display: block;
+          padding-bottom: 100%;
+        }
+      }
+    }
+    .chess-board-pieces {
+      @include --cover();
+      .chess-board-piece-container {
+        position: absolute;
+        width: 12.5%;
+        height: 12.5%;
+        padding: 5px;
+        &.pos-y-1 {
+          top: 87.5%;
+        }
+        &.pos-y-2 {
+          top: 75%;
+        }
+        &.pos-y-3 {
+          top: 62.5%;
+        }
+        &.pos-y-4 {
+          top: 50%;
+        }
+        &.pos-y-5 {
+          top: 37.5%;
+        }
+        &.pos-y-6 {
+          top: 25%;
+        }
+        &.pos-y-7 {
+          top: 12.5%;
+        }
+        &.pos-y-8 {
+          top: 0;
+        }
+        &.pos-x-1 {
+          left: 0;
+        }
+        &.pos-x-2 {
+          left: 12.5%;
+        }
+        &.pos-x-3 {
+          left: 25%;
+        }
+        &.pos-x-4 {
+          left: 37.5%;
+        }
+        &.pos-x-5 {
+          left: 50%;
+        }
+        &.pos-x-6 {
+          left: 62.5%;
+        }
+        &.pos-x-7 {
+          left: 75%;
+        }
+        &.pos-x-8 {
+          left: 87.5%;
+        }
+        .chess-board-piece {
+           position: absolute;
+           top: 5px;
+           right: 5px;
+           bottom: 5px;
+           left: 5px;
+           border-radius: 50%;
+           @media #{$--xs} {
+             font-size: 1.5em;
+           }
+           @media #{$--sm} {
+             font-size: 2em;
+           }
+           @media #{$--md} {
+             font-size: 2.5em;
+           }
+           @media #{$--lg} {
+             font-size: 4em;
+           }
+           @media #{$--xl} {
+             font-size: 4em;
+           }
+           &:hover {
+             cursor: auto;
+           }
+           &:after {
+             content: '';
+             font-family: 'chess';
+             position: absolute;
+             top: 50%;
+             left: 50%;
+             -webkit-transform: translate(-50%, -50%);
+             -moz-transform: translate(-50%, -50%);
+             -ms-transform: translate(-50%, -50%);
+             -o-transform: translate(-50%, -50%);
+             transform: translate(-50%, -50%);
+           }
+           &.chess-piece-active:hover {
+             cursor: pointer;
+           }
+           &.chess-white {
+             background: white radial-gradient(white, #ccc);
+             -webkit-box-shadow: 0 0 30px 0 #ccc;
+             -moz-box-shadow: 0 0 30px 0 #ccc;
+             box-shadow: 0 0 30px 0 #ccc;
+             &:after {
+               color: black;
+             }
+           }
+           &.chess-black {
+             background: black radial-gradient(black, #444);
+             -webkit-box-shadow: 0 0 30px 0 #444;
+             -moz-box-shadow: 0 0 30px 0 #444;
+             box-shadow: 0 0 30px 0 #444;
+             &:after {
+               color: white;
+             }
+           }
+           &.chess-type-pawn:after {
+             content: 'p';
+           }
+           &.chess-type-rock:after {
+             content: 'r';
+           }
+           &.chess-type-knight:after {
+             content: 'h';
+           }
+           &.chess-type-bishop:after {
+             content: 'b';
+           }
+           &.chess-type-king:after {
+             content: 'k';
+           }
+           &.chess-type-queen:after {
+             content: 'q';
+           }
+           &.chess-move-moves {
+             opacity: .5;
+           }
+         }
+      }
+    }
+  }
+}
+
+/* CHESS BOARD PAGE - END */
