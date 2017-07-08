@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { togglePlayer2Ready, player2Join, player2Leave } from '../../actions/roomActions';
+import { bindActionCreators } from 'redux';
+import * as roomPageActions from '../../actions/roomActions';
+
 
 const RoomPage = ({ roomId, roomName, isHostRoomPage, players,
-  joinClick, toggleReadyClick, leaveClick }) => (
+  actions }) => (
     <div>
       <div>
         <button type="button" className="btn btn-default">
@@ -27,18 +29,19 @@ const RoomPage = ({ roomId, roomName, isHostRoomPage, players,
       <div className="test-buttons">
         <div><br />For test only: <br /></div>
         <div className="row">
-          <button className="btn btn-success" onClick={() => joinClick({ playerName: 'jason', playerId: 456 })}>
+          <button className="btn btn-success" onClick={() => actions.player2Join({ playerName: 'jason', playerId: 456 })}>
             Player 2 join</button>
         </div>
         <div className="row">
-          <button className="btn btn-success" onClick={() => toggleReadyClick()}>Player 2 toggle ready</button>
+          <button className="btn btn-success" onClick={() => actions.togglePlayer2Ready()}>Player 2 toggle ready</button>
         </div>
         <div className="row">
-          <button className="btn btn-success" onClick={() => leaveClick()}>Player 2 leave</button>
+          <button className="btn btn-success" onClick={() => actions.player2Leave()}>Player 2 leave</button>
         </div>
       </div>
     </div>
   );
+
 
 RoomPage.propTypes = {
   roomId: PropTypes.number.isRequired,
@@ -49,9 +52,11 @@ RoomPage.propTypes = {
     playerName: PropTypes.string.isRequired,
     isReady: PropTypes.bool.isRequired,
   })).isRequired,
-  joinClick: PropTypes.func.isRequired,
-  toggleReadyClick: PropTypes.func.isRequired,
-  leaveClick: PropTypes.func.isRequired,
+  actions: PropTypes.shape({
+    player2Join: PropTypes.func.isRequired,
+    togglePlayer2Ready: PropTypes.func.isRequired,
+    player2Leave: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = ({ roomPage }) => ({
@@ -59,11 +64,9 @@ const mapStateToProps = ({ roomPage }) => ({
 });
 
 
-const mapDispatchToProps = {
-  joinClick: player2Join,
-  toggleReadyClick: togglePlayer2Ready,
-  leaveClick: player2Leave,
-};
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(roomPageActions, dispatch),
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomPage);
