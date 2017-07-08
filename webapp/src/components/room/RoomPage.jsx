@@ -1,56 +1,69 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Input } from 'reactstrap';
-import { toggleIsReady } from '../../actions/roomActions';
+import { togglePlayer2Ready, player2Join, player2Leave } from '../../actions/roomActions';
 
-const RoomPage = ({ roomId, roomName, players, onReadyClick }) => (
-  <form>
-    <div className="form-group">
-      <label htmlFor="roomId">RoomID: #{roomId}</label>
+const RoomPage = ({ roomId, roomName, isHostRoomPage, players,
+  joinClick, toggleReadyClick, leaveClick }) => (
+    <div>
+      <div>
+        <button type="button" className="btn btn-default">
+          <span className="glyphicon glyphicon-chevron-left" /> Lobby
+      </button>
+        <p>Room #{roomId}: {roomName}</p>
+      </div>
+
+      <div>
+        <div>
+          Player 1: {players[0].playerName}
+        </div>
+        <div>
+          Player 2: {players[1].playerName === '' ? 'Open' : players[1].playerName}
+        </div>
+        <div>
+          <button className={players[1].isReady ? 'btn btn-success' : 'btn btn-default'}>{isHostRoomPage ? 'Start' : 'Ready'}</button>
+        </div>
+      </div>
+      <div className="test-buttons">
+        <div><br />For test only: <br /></div>
+        <div className="row">
+          <button className="btn btn-success" onClick={() => joinClick({ playerName: 'jason', playerId: 456 })}>
+            Player 2 join</button>
+        </div>
+        <div className="row">
+          <button className="btn btn-success" onClick={() => toggleReadyClick()}>Player 2 toggle ready</button>
+        </div>
+        <div className="row">
+          <button className="btn btn-success" onClick={() => leaveClick()}>Player 2 leave</button>
+        </div>
+      </div>
     </div>
-    <div className="form-group">
-      <label htmlFor="roomName">Room Name: {roomName}</label>
-    </div>
-    <div className="form-group">
-      <label htmlFor="player1">Player 1:</label>
-      <Input type="select" id="player1Select">
-        <option>{players[0].playerName}</option>
-      </Input>
-      <div>Ready</div>
-      <input type="checkbox" checked={players[0].isReady} onChange={() => onReadyClick(0)} />
-    </div>
-    <div className="form-group">
-      <label htmlFor="player2">Player 2:</label>
-      <Input type="select" id="player2Select">
-        <option>{players[1].playerName}</option>
-        <option>Open</option>
-        <option>Close</option>
-      </Input>
-      <div>Ready</div>
-      <input type="checkbox" checked={players[1].isReady} onChange={() => onReadyClick(1)} />
-    </div>
-    <button className="btn btn-success">Start!</button>
-  </form>
-);
+  );
 
 RoomPage.propTypes = {
   roomId: PropTypes.number.isRequired,
   roomName: PropTypes.string.isRequired,
+  isHostRoomPage: PropTypes.bool.isRequired,
   players: PropTypes.arrayOf(PropTypes.shape({
     playerId: PropTypes.number.isRequired,
     playerName: PropTypes.string.isRequired,
     isReady: PropTypes.bool.isRequired,
   })).isRequired,
-  onReadyClick: PropTypes.func.isRequired,
+  joinClick: PropTypes.func.isRequired,
+  toggleReadyClick: PropTypes.func.isRequired,
+  leaveClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ roomPage }) => ({
   ...roomPage,
 });
 
+
 const mapDispatchToProps = {
-  onReadyClick: toggleIsReady,
+  joinClick: player2Join,
+  toggleReadyClick: togglePlayer2Ready,
+  leaveClick: player2Leave,
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomPage);

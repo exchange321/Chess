@@ -6,7 +6,7 @@ import roomReducer from './roomReducer';
 const rootReducer = combineReducers(
   {
     loginPage: loginReducer,
-    roomListPage: lobbyReducer,
+    lobbyPage: lobbyReducer,
     roomPage: roomReducer,
   },
 );

@@ -13,6 +13,7 @@ export default {
   roomPage: {
     roomId: 1,
     roomName: 'Room 1',
+    isHostRoomPage: true,
     players: [
       {
         playerName: 'Wayuki',
@@ -20,8 +21,8 @@ export default {
         isReady: true,
       },
       {
-        playerName: 'computer normal',
-        playerId: 456,
+        playerName: '',
+        playerId: -1,
         isReady: false,
       },
     ],
