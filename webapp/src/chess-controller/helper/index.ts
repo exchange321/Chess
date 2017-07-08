@@ -58,9 +58,13 @@ export const isCoordinateInScope = (coordinate: [number, number]): boolean => {
 
 export const arraysHasArray = (arrays: Array<[number, number]>, target: [number, number]): boolean => {
   for (const array of arrays) {
-    if (array[0] === target[0] && array[1] === target[1]) {
+    if (compareArray(array, target)) {
       return true;
     }
   }
   return false;
+};
+
+export const compareArray = (array: [number, number], target: [number, number]): boolean => {
+  return array[0] === target[0] && array[1] === target[1];
 };

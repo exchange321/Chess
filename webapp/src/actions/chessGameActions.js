@@ -9,4 +9,17 @@ export const registerMoves = (moves, piece) => ({
   moves,
 });
 
+export const resetMoves = () => ({
+  type: CHESS_GAME_ACTIONS.RESET_MOVES,
+});
+
+export const switchTurn = () => ({
+  type: CHESS_GAME_ACTIONS.SWITCH_TURN,
+});
+
+export const registerVictory = team => ({
+  type: CHESS_GAME_ACTIONS.REGISTER_VICTORY,
+  team,
+});
+
 export default () => {};

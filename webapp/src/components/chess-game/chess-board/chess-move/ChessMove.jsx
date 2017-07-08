@@ -11,7 +11,7 @@ const ChessMove = ({ piece, coordinate, moveType, onPieceClick }) => (
       role="button"
       tabIndex="-1"
       className={`chess-board-piece chess-${piece.faction} chess-type-${piece.type} chess-move-${moveType} chess-piece-active`}
-      onClick={() => onPieceClick()}
+      onClick={() => onPieceClick(piece.id, coordinate)}
     />
   </div>
 );

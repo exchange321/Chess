@@ -32,6 +32,8 @@ export default {
     ],
   },
   chessGamePage: {
+    victorious: false,
+    victoriousTeam: null,
     chessBoard: new ChessBoard('normal'),
     activePiece: null,
     showMoves: false,

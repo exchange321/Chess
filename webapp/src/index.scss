@@ -23,6 +23,32 @@ $--xs-md: "screen and (max-width: 991px)";
   left: 0;
 }
 
+@mixin --absolute-center() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+@mixin --chess-piece-color($--bgColor, $--gradient-from, $--gradient-to) {
+  background: $--bgColor radial-gradient($--gradient-from, $--gradient-to);
+  -webkit-box-shadow: 0 0 2rem 0 $--gradient-to;
+  -moz-box-shadow: 0 0 2rem 0 $--gradient-to;
+  box-shadow: 0 0 2rem 0 $--gradient-to;
+}
+
+@mixin --calc-pos-y($--y) {
+  top: 12.5% * $--y;
+}
+
+@mixin --calc-pos-x($--x) {
+  left: 12.5% * $--x;
+}
+
 /* LIBRARY - END */
 
 /* GENERAL - START */
@@ -39,20 +65,13 @@ div.chess-game-page {
   min-height: 100vh;
   position: relative;
   .chess-board {
+    @include --absolute-center();
     border: solid transparent;
     -webkit-border-image: url('./images/chess-border.png') 25 round;
     -moz-border-image: url('./images/chess-border.png') 25 round;
     -o-border-image: url('./images/chess-border.png') 25 round;
     border-image: url('./images/chess-border.png') 25 round;
-    position: absolute;
-    width: 80%;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    width: 70%;
     @media #{$--xs} {
       border-width: 25px;
     }
@@ -94,52 +113,52 @@ div.chess-game-page {
         height: 12.5%;
         padding: 5px;
         &.pos-y-1 {
-          top: 87.5%;
+          @include --calc-pos-y(7);
         }
         &.pos-y-2 {
-          top: 75%;
+          @include --calc-pos-y(6);
         }
         &.pos-y-3 {
-          top: 62.5%;
+          @include --calc-pos-y(5);
         }
         &.pos-y-4 {
-          top: 50%;
+          @include --calc-pos-y(4);
         }
         &.pos-y-5 {
-          top: 37.5%;
+          @include --calc-pos-y(3);
         }
         &.pos-y-6 {
-          top: 25%;
+          @include --calc-pos-y(2);
         }
         &.pos-y-7 {
-          top: 12.5%;
+          @include --calc-pos-y(1);
         }
         &.pos-y-8 {
-          top: 0;
+          @include --calc-pos-y(0);
         }
         &.pos-x-1 {
-          left: 0;
+          @include --calc-pos-x(0);
         }
         &.pos-x-2 {
-          left: 12.5%;
+          @include --calc-pos-x(1);
         }
         &.pos-x-3 {
-          left: 25%;
+          @include --calc-pos-x(2);
         }
         &.pos-x-4 {
-          left: 37.5%;
+          @include --calc-pos-x(3);
         }
         &.pos-x-5 {
-          left: 50%;
+          @include --calc-pos-x(4);
         }
         &.pos-x-6 {
-          left: 62.5%;
+          @include --calc-pos-x(5);
         }
         &.pos-x-7 {
-          left: 75%;
+          @include --calc-pos-x(6);
         }
         &.pos-x-8 {
-          left: 87.5%;
+          @include --calc-pos-x(7);
         }
         .chess-board-piece {
           position: absolute;
@@ -168,33 +187,20 @@ div.chess-game-page {
           }
           &:after {
             content: '';
-            font-family: 'chess';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            -moz-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            -o-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+            font-family: 'chess', Arial, sans-serif;
+            @include --absolute-center();
           }
           &.chess-piece-active:hover {
             cursor: pointer;
           }
           &.chess-white {
-            background: white radial-gradient(white, #ccc);
-            -webkit-box-shadow: 0 0 30px 0 #ccc;
-            -moz-box-shadow: 0 0 30px 0 #ccc;
-            box-shadow: 0 0 30px 0 #ccc;
+            @include --chess-piece-color(white, white, #ccc);
             &:after {
               color: black;
             }
           }
           &.chess-black {
-            background: black radial-gradient(black, #444);
-            -webkit-box-shadow: 0 0 30px 0 #444;
-            -moz-box-shadow: 0 0 30px 0 #444;
-            box-shadow: 0 0 30px 0 #444;
+            @include --chess-piece-color(black, black, #444);
             &:after {
               color: white;
             }
@@ -222,10 +228,7 @@ div.chess-game-page {
           }
           &.chess-move-offences {
             opacity: .5;
-            background: red;
-            -webkit-box-shadow: 0 0 2rem 0 red;
-            -moz-box-shadow: 0 0 2rem 0 red;
-            box-shadow: 0 0 2rem 0 red;
+            @include --chess-piece-color(#ff6666, #ff6666, #ff6666);
             &:after {
               content: '';
             }

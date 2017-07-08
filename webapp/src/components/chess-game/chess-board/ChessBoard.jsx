@@ -32,6 +32,9 @@ class ChessBoard extends Component {
     }).isRequired,
     actions: PropTypes.shape({
       registerMoves: PropTypes.func.isRequired,
+      resetMoves: PropTypes.func.isRequired,
+      switchTurn: PropTypes.func.isRequired,
+      registerVictory: PropTypes.func.isRequired,
     }).isRequired,
   };
   static defaultProps = {
@@ -65,6 +68,32 @@ class ChessBoard extends Component {
   handlePieceClick = (piece) => {
     const moves = this.props.chessBoard.getPiecePossibleMoves(piece.id);
     this.props.actions.registerMoves(moves, piece);
+  };
+  handlePieceMove = (pieceId, location) => {
+    const {
+      chessBoard,
+      actions: {
+        resetMoves,
+        switchTurn,
+        registerVictory,
+      },
+    } = this.props;
+    chessBoard.movePiece(pieceId, location);
+    resetMoves();
+    switchTurn();
+    switch (chessBoard.checkVictory()) {
+      case 1: {
+        registerVictory('white');
+        break;
+      }
+      case 2: {
+        registerVictory('black');
+        break;
+      }
+      default: {
+        break;
+      }
+    }
   };
 
   render() {
@@ -102,7 +131,7 @@ class ChessBoard extends Component {
                   piece={activePiece}
                   coordinate={move}
                   moveType={moveType}
-                  onPieceClick={() => {}}
+                  onPieceClick={this.handlePieceMove}
                 />
               ))) : null,
             )

@@ -8,6 +8,8 @@ import ChessPiece from '../ChessPiece';
 
 class ChessPawn extends ChessPiece implements IChessPiece {
 
+  private moved: boolean = false;
+
   public static INVALID_WHITE_PAWN_LOCATION: COORDINATE[] = [
     [1, 1],
     [1, 2],
@@ -39,9 +41,11 @@ class ChessPawn extends ChessPiece implements IChessPiece {
     const moves: COORDINATE[] = [];
     const offences: COORDINATE[] = [];
 
+    const step = this.moved ? 1 : 2;
+
     switch (this.faction) {
       case 'white': {
-        for (let i = 1; i <= 2; i++) {
+        for (let i = 1; i <= step; i++) {
           const possibleMove: [number, number] = [xAxis, yAxis + i];
           if (isCoordinateInScope(possibleMove)) {
             const move = possibleMove as COORDINATE;
@@ -64,7 +68,7 @@ class ChessPawn extends ChessPiece implements IChessPiece {
         break;
       }
       case 'black': {
-        for (let i = 1; i <= 2; i++) {
+        for (let i = 1; i <= step; i++) {
           const possibleMove: [number, number] = [xAxis, yAxis - i];
           if (isCoordinateInScope(possibleMove)) {
             const move = possibleMove as COORDINATE;
@@ -107,6 +111,10 @@ class ChessPawn extends ChessPiece implements IChessPiece {
         return !ChessPawn.INVALID_WHITE_PAWN_LOCATION.includes(coordinate);
       }
     }
+  }
+
+  public registerPawnMoved(): void {
+    this.moved = true;
   }
 }
 

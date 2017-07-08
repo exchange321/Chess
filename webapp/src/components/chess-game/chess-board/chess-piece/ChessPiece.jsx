@@ -14,7 +14,7 @@ const ChessPiece = ({ piece, onPieceClick, turn }) => (
       onClick={
         turn === piece.faction ?
           () => onPieceClick(piece) :
-          () => onPieceClick(piece)
+          () => {}
       }
     />
   </div>

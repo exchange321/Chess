@@ -16,6 +16,27 @@ const chessGameReducer = (state = initialState.chessGamePage, action) => {
         showMoves: !(state.activePiece && action.activePiece.id === state.activePiece.id),
       };
     }
+    case CHESS_GAME_ACTIONS.RESET_MOVES: {
+      return {
+        ...state,
+        moves: initialState.chessGamePage.moves,
+        activePiece: initialState.chessGamePage.activePiece,
+        showMoves: false,
+      };
+    }
+    case CHESS_GAME_ACTIONS.SWITCH_TURN: {
+      return {
+        ...state,
+        turn: state.turn === 'white' ? 'black' : 'white',
+      };
+    }
+    case CHESS_GAME_ACTIONS.REGISTER_VICTORY: {
+      return {
+        ...state,
+        victorious: true,
+        victoriousTeam: action.team,
+      };
+    }
     default: {
       return state;
     }
