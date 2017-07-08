@@ -1,3 +1,7 @@
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -16,26 +20,62 @@ class LoginPage extends React.Component {
       push: PropTypes.func.isRequired,
     }).isRequired,
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+    };
+  }
   submitClick = (e) => {
     e.preventDefault();
-    this.props.routerActions.push('/lobby');
+    e.preventDefault();
+    if (this.state.username === 'admin' && this.state.password === '123456') {
+      // eslint-disable-next-line no-console
+      console.log('Login successfuly');
+      this.props.routerActions.push('/lobby');
+    } else {
+      // eslint-disable-next-line no-console
+      console.log('Login fail.');
+    }
   };
 
   render() {
+    const loginContainerStyle = {
+      margin: '4% 30%',
+    };
+    const labelStyle = {
+      fontSize: 22,
+    };
     return (
-      <div>
-        <form>
-          <div className="form-group">
-            <label htmlFor="username">Username:</label>
-            <input id="username" name="username" className="form-control" />
+      <MuiThemeProvider>
+        <div>
+          <AppBar
+            title="Login"
+          />
+          <div className="login-container" style={loginContainerStyle}>
+            <TextField
+              hintText="Enter your Username"
+              fullWidth
+              floatingLabelText="Username"
+              style={labelStyle}
+              onChange={(event, newValue) => this.setState({ username: newValue })}
+            />
+            <br />
+            <TextField
+              type="password"
+              hintText="Enter your Password"
+              fullWidth
+              floatingLabelText="Password"
+              style={labelStyle}
+              onChange={(event, newValue) => this.setState({ password: newValue })}
+            />
+            <br />
+            <br />
+            <RaisedButton label="Login" primary fullWidth onClick={this.submitClick} />
           </div>
-          <div className="form-group">
-            <label htmlFor="password">Password:</label>
-            <input id="password" name="password" type="password" className="form-control" />
-          </div>
-          <button type="submit" className="btn btn-default" onClick={this.submitClick}>Submit</button>
-        </form>
-      </div>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
