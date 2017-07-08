@@ -3,29 +3,26 @@ export default {
     isLogin: false,
     userName: 'jason106',
   },
-  roomListPage: {
+  lobbyPage: {
     rooms: [
-            { roomId: 1, name: 'Room 1', numPlayer: 1, status: 'Waiting...' },
-            { roomId: 2, name: 'Room 2', numPlayer: 2, status: 'Waiting...' },
-            { roomId: 3, name: 'Room 3', numPlayer: 2, status: 'Playing...' },
+      { roomId: 1, name: 'Room 1', numPlayer: 1, status: 'Waiting...' },
+      { roomId: 2, name: 'Room 2', numPlayer: 2, status: 'Waiting...' },
+      { roomId: 3, name: 'Room 3', numPlayer: 2, status: 'Playing...' },
     ],
   },
-  roomDetailPage: {
-    info: {
-      roomId: 1,
-      roomName: 'Room 1',
-
-    },
-    slots: [
+  roomPage: {
+    roomId: 1,
+    roomName: 'Room 1',
+    players: [
       {
-        slotId: 0,
-        name: 'player 1',
-        isReady: 1,
+        playerName: 'Wayuki',
+        playerId: 123,
+        isReady: true,
       },
       {
-        slotId: 1,
-        name: 'computer insane',
-        isReady: 0,
+        playerName: 'computer normal',
+        playerId: 456,
+        isReady: false,
       },
     ],
 

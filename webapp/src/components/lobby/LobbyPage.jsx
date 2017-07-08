@@ -46,7 +46,7 @@ class LobbyPage extends React.Component {
             <Room key={room.id} {...room} onClick={this.joinRoomClick} />
           ))}
         </div>
-        <button type="button" className="btn btn-default" onClick={this.toggleModal}>CREATE ROOM</button>
+        <button type="button" className="btn btn-success" onClick={this.toggleModal}>CREATE ROOM</button>
         <Modal isOpen={this.state.modal} toggle={this.toggleModal} className="create-room-modal">
           <ModalHeader toggle={this.toggle}>Create a room</ModalHeader>
           <ModalBody>
