@@ -67,8 +67,8 @@ class LobbyPage extends React.Component {
 }
 
 
-const mapStateToProps = ({ roomListPage, loginPage: { userName } }) => ({
-  ...roomListPage,
+const mapStateToProps = ({ lobbyPage, loginPage: { userName } }) => ({
+  ...lobbyPage,
   userName,
 });
 

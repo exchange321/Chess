@@ -3,7 +3,7 @@ import React from 'react';
 class LoginPage extends React.Component {
   submitClick = (e) => {
     e.preventDefault();
-// eslint-disable-next-line no-console
+    // eslint-disable-next-line no-console
     console.log('submit click');
   };
 
