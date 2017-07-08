@@ -37,6 +37,12 @@ const chessGameReducer = (state = initialState.chessGamePage, action) => {
         victoriousTeam: action.team,
       };
     }
+    case CHESS_GAME_ACTIONS.REGISTER_CHESS_PIECES: {
+      return {
+        ...state,
+        pieces: action.pieces,
+      };
+    }
     default: {
       return state;
     }

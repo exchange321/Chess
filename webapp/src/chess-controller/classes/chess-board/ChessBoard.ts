@@ -9,6 +9,7 @@ import IChessBoard from '../../interfaces/chess-board/IChessBoard';
 import IChessMoves from '../../interfaces/chess-piece/IChessMoves';
 import IModePiece from '../../interfaces/mode/IModePiece';
 import normalMode from '../../modes/normalMode.json';
+import IChessPieceSimp from '../../interfaces/chess-piece/IChessPieceSimp';
 
 class ChessBoard implements IChessBoard {
   public pieces: ChessPiece[];
@@ -46,6 +47,15 @@ class ChessBoard implements IChessBoard {
       return 1;
     }
     return 2;
+  }
+
+  public getPieces(): IChessPieceSimp[] {
+    return this.pieces.map((piece) => ({
+      coordinate: piece.coordinate,
+      faction: piece.faction,
+      id: piece.id,
+      type: piece.type,
+    }));
   }
 
   private initializeChessBoard(): ChessPiece[] {

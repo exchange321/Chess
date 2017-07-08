@@ -22,4 +22,9 @@ export const registerVictory = team => ({
   team,
 });
 
+export const registerChessPieces = pieces => ({
+  type: CHESS_GAME_ACTIONS.REGISTER_CHESS_PIECES,
+  pieces,
+});
+
 export default () => {};

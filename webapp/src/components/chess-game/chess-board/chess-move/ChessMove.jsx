@@ -3,7 +3,6 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import ChessPieceClass from '../../../../chess-controller/classes/chess-piece/ChessPiece.ts';
 
 const ChessMove = ({ piece, coordinate, moveType, onPieceClick }) => (
   <div className={`chess-board-piece-container pos-x-${coordinate[0]} pos-y-${coordinate[1]}`}>
@@ -17,7 +16,12 @@ const ChessMove = ({ piece, coordinate, moveType, onPieceClick }) => (
 );
 
 ChessMove.propTypes = {
-  piece: PropTypes.instanceOf(ChessPieceClass).isRequired,
+  piece: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    coordinate: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+    faction: PropTypes.string.isRequired,
+  }).isRequired,
   coordinate: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
   moveType: PropTypes.string.isRequired,
   onPieceClick: PropTypes.func.isRequired,

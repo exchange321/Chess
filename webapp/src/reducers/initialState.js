@@ -35,6 +35,7 @@ export default {
     victorious: false,
     victoriousTeam: null,
     chessBoard: new ChessBoard('normal'),
+    pieces: [],
     activePiece: null,
     showMoves: false,
     turn: 'white',
