@@ -55,6 +55,9 @@ class ChessBishop extends ChessPiece implements IChessPiece {
 
         if (isCoordinateInScope(possibleMove)) {
           const move = possibleMove as COORDINATE;
+          if (!this.isValidPieceCoordinate(move)) {
+            break;
+          }
           if (arraysHasArray(enemyCoordinates, move)) {
             offences.push(move);
             break;
