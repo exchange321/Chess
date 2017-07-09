@@ -22,6 +22,7 @@ class LoginPage extends React.Component {
     actions: PropTypes.shape({
       handleLoginFieldChange: PropTypes.func.isRequired,
       handleLoginFormSubmit: PropTypes.func.isRequired,
+      resetErrors: PropTypes.func.isRequired,
     }).isRequired,
   };
   state = {
@@ -37,6 +38,7 @@ class LoginPage extends React.Component {
     this.setState({
       loggingIn: true,
     });
+    this.props.actions.resetErrors();
     this.props.actions.handleLoginFormSubmit().then().catch(() => {
       this.setState({
         loggingIn: false,

@@ -15,8 +15,15 @@ const loginReducer = (state = initialState.loginPage, action) => {
         errors: action.errors,
       };
     }
-    default:
+    case LOGIN_ACTIONS.RESET_ERRORS: {
+      return {
+        ...state,
+        errors: initialState.loginPage.errors,
+      };
+    }
+    default: {
       return state;
+    }
   }
 };
 

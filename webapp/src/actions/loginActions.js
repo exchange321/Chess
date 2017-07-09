@@ -34,4 +34,8 @@ export const handleLoginFormSubmit = () => (dispatch, getState) => (
   })
 );
 
+export const resetErrors = () => ({
+  type: LOGIN_ACTIONS.RESET_ERRORS,
+});
+
 export default () => {};
