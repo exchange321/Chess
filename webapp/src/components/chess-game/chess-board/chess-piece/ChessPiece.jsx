@@ -4,8 +4,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ChessPiece = ({ piece, onPieceClick, turn }) => (
-  <div className={`chess-board-piece-container pos-x-${piece.coordinate[0]} pos-y-${piece.coordinate[1]}`}>
+const ChessPiece = ({ piece, onPieceClick, turn, playerFaction }) => (
+  <div className={`chess-board-piece-container pos-x-${playerFaction === 'white' ? piece.coordinate[0] : 9 - piece.coordinate[0]} pos-y-${playerFaction === 'white' ? piece.coordinate[1] : 9 - piece.coordinate[1]}`}>
     <div
       role="button"
       tabIndex="-1"
@@ -28,6 +28,7 @@ ChessPiece.propTypes = {
   }).isRequired,
   onPieceClick: PropTypes.func.isRequired,
   turn: PropTypes.string.isRequired,
+  playerFaction: PropTypes.string.isRequired,
 };
 
 export default ChessPiece;

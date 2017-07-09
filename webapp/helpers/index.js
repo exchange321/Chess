@@ -51,11 +51,28 @@ export const authenticate = (email, password) => (
         reject(errors);
       } else {
         resolve({
-          userId: 'qkaskfojq',
+          userId: 'qkaskfojqs',
           playerName: 'Jason',
           isAuthenticated: true,
         });
       }
+    }, delay);
+  })
+);
+
+export const generateMatch = () => (
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        player: {
+          faction: 'white',
+        },
+        opponent: {
+          userId: 'qkaskasqwr',
+          playerName: 'Wayuki',
+          faction: 'black',
+        },
+      });
     }, delay);
   })
 );

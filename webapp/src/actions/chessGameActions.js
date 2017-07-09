@@ -27,4 +27,21 @@ export const registerChessPieces = pieces => ({
   pieces,
 });
 
+export const registerPlayers = players => ({
+  type: CHESS_GAME_ACTIONS.REGISTER_PLAYERS,
+  players,
+});
+
+export const toggleLeaving = () => ({
+  type: CHESS_GAME_ACTIONS.TOGGLE_LEAVING,
+});
+
+export const resetState = () => ({
+  type: CHESS_GAME_ACTIONS.RESET_STATE,
+});
+
+export const informStateLoaded = () => ({
+  type: CHESS_GAME_ACTIONS.STATE_LOADED,
+});
+
 export default () => {};

@@ -3,7 +3,7 @@ import ChessBoard from '../chess-controller/classes/chess-board/ChessBoard.ts';
 export default {
   auth: {
     userId: '',
-    playerName: '',
+    playerName: 'Jason',
     isAuthenticated: false,
   },
   loginPage: {
@@ -38,6 +38,16 @@ export default {
     ],
   },
   chessGamePage: {
+    leaving: false,
+    loading: true,
+    player: {
+      faction: 'white',
+    },
+    opponent: {
+      userId: '',
+      playerName: '',
+      faction: 'black',
+    },
     victorious: false,
     victoriousTeam: null,
     chessBoard: new ChessBoard('normal'),

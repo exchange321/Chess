@@ -43,6 +43,27 @@ const chessGameReducer = (state = initialState.chessGamePage, action) => {
         pieces: action.pieces,
       };
     }
+    case CHESS_GAME_ACTIONS.REGISTER_PLAYERS: {
+      return {
+        ...state,
+        ...action.players,
+      };
+    }
+    case CHESS_GAME_ACTIONS.TOGGLE_LEAVING: {
+      return {
+        ...state,
+        leaving: !state.leaving,
+      };
+    }
+    case CHESS_GAME_ACTIONS.RESET_STATE: {
+      return initialState.chessGamePage;
+    }
+    case CHESS_GAME_ACTIONS.STATE_LOADED: {
+      return {
+        ...state,
+        loading: false,
+      };
+    }
     default: {
       return state;
     }

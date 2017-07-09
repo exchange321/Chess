@@ -11,8 +11,9 @@ import IconButton from 'material-ui/IconButton';
 import FontIcon from 'material-ui/FontIcon';
 
 import { toggleRoomCreation } from '../../actions/lobbyActions';
+import { toggleLeaving } from '../../actions/chessGameActions';
 
-const Sidebar = ({ playerName, lobbyActions }) => (
+const Sidebar = ({ auth, chessGamePage, lobbyActions, chessGameActions }) => (
   <div className="navigation">
     <Switch>
       <Route
@@ -20,7 +21,7 @@ const Sidebar = ({ playerName, lobbyActions }) => (
         path="/"
         render={() => (
           <AppBar
-            title={`Welcome, ${playerName}`}
+            title={`Welcome, ${auth.playerName}`}
             iconElementLeft={
               <IconButton>
                 <FontIcon className="fa fa-users" />
@@ -53,9 +54,12 @@ const Sidebar = ({ playerName, lobbyActions }) => (
         path="/game"
         render={() => (
           <AppBar
-            title=""
+            title={(!auth.playerName || !chessGamePage.opponent.playerName) ?
+              'Loading Players...' :
+              `${auth.playerName} vs. ${chessGamePage.opponent.playerName}`
+            }
             iconElementLeft={
-              <IconButton>
+              <IconButton onClick={chessGameActions.toggleLeaving}>
                 <FontIcon className="fa fa-times-circle" />
               </IconButton>
             }
@@ -67,19 +71,50 @@ const Sidebar = ({ playerName, lobbyActions }) => (
 );
 
 Sidebar.propTypes = {
-  playerName: PropTypes.string.isRequired,
+  auth: PropTypes.shape({
+    playerName: PropTypes.string.isRequired,
+  }).isRequired,
+  chessGamePage: PropTypes.shape({
+    player: PropTypes.shape({
+      faction: PropTypes.string.isRequired,
+    }).isRequired,
+    opponent: PropTypes.shape({
+      playerName: PropTypes.string.isRequired,
+      faction: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
   lobbyActions: PropTypes.shape({
     toggleRoomCreation: PropTypes.func.isRequired,
+  }).isRequired,
+  chessGameActions: PropTypes.shape({
+    toggleLeaving: PropTypes.func.isRequired,
   }).isRequired,
 };
 
 export default connect(
-  ({ auth: { playerName } }) => ({
-    playerName,
+  ({
+     auth: {
+       playerName,
+     },
+    chessGamePage: {
+      player,
+      opponent,
+    },
+  }) => ({
+    auth: {
+      playerName,
+    },
+    chessGamePage: {
+      player,
+      opponent,
+    },
   }),
   dispatch => ({
     lobbyActions: bindActionCreators({
       toggleRoomCreation,
+    }, dispatch),
+    chessGameActions: bindActionCreators({
+      toggleLeaving,
     }, dispatch),
   }),
 )(Sidebar);

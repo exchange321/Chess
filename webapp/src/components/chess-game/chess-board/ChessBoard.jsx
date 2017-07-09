@@ -21,6 +21,9 @@ import * as chessGameActions from '../../../actions/chessGameActions';
 )
 class ChessBoard extends Component {
   static propTypes = {
+    player: PropTypes.shape({
+      faction: PropTypes.string.isRequired,
+    }).isRequired,
     turn: PropTypes.string.isRequired,
     chessBoard: PropTypes.instanceOf(ChessBoardClass).isRequired,
     pieces: PropTypes.arrayOf(PropTypes.shape({
@@ -122,6 +125,7 @@ class ChessBoard extends Component {
       activePiece,
       turn,
       showMoves,
+      player: { faction },
     } = this.props;
     return (
       <div className="chess-board">
@@ -143,6 +147,7 @@ class ChessBoard extends Component {
                 piece={piece}
                 turn={turn}
                 onPieceClick={this.handlePieceClick}
+                playerFaction={faction}
               />
             )).concat(
               showMoves ? Object.keys(moves).map(moveType => moves[moveType].map(move => (
@@ -151,6 +156,7 @@ class ChessBoard extends Component {
                   coordinate={move}
                   moveType={moveType}
                   onPieceClick={this.handlePieceMove}
+                  playerFaction={faction}
                 />
               ))) : null,
             )
