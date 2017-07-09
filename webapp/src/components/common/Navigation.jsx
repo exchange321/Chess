@@ -48,6 +48,20 @@ const Sidebar = ({ playerName, lobbyActions }) => (
           />
         )}
       />
+      <Route
+        exact
+        path="/game"
+        render={() => (
+          <AppBar
+            title=""
+            iconElementLeft={
+              <IconButton>
+                <FontIcon className="fa fa-times-circle" />
+              </IconButton>
+            }
+          />
+        )}
+      />
     </Switch>
   </div>
 );

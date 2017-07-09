@@ -24,7 +24,7 @@ class ChessGamePage extends Component {
   render() {
     const { victorious, victoriousTeam } = this.props;
     return (
-      <div className="chess-game-page container">
+      <div className="chess-game-page page">
         <ChessBoard />
         <Modal isOpen={victorious} backdrop="static">
           <ModalBody>
