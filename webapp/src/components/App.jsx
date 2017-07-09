@@ -18,7 +18,7 @@ const App = () => (
         <Switch>
           <Route exact path="/" component={PageForUserOnly(LobbyPage)} />
           <Route exact path="/room" component={RoomPage} />
-          <Route exact path="/game" component={PageForUserOnly(ChessGamePage)} />
+          <Route exact path="/game" component={ChessGamePage} />
           <Route exact path="/login" component={PageForGuestOnly(LoginPage)} />
         </Switch>
       </div>
