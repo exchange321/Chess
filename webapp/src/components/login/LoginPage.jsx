@@ -1,80 +1,88 @@
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { routerActions } from 'react-router-redux';
+import * as loginPageActions from '../../actions/loginActions';
+import TextField from '../common/MaterialTextField.jsx';
 
 @connect(
-  null,
+  ({ loginPage }) => ({
+    ...loginPage,
+  }),
   dispatch => ({
-    routerActions: bindActionCreators(routerActions, dispatch),
+    actions: bindActionCreators(loginPageActions, dispatch),
   }),
 )
 class LoginPage extends React.Component {
   static propTypes = {
-    routerActions: PropTypes.shape({
-      push: PropTypes.func.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    errors: PropTypes.objectOf(PropTypes.string).isRequired,
+    actions: PropTypes.shape({
+      handleLoginFieldChange: PropTypes.func.isRequired,
+      handleLoginFormSubmit: PropTypes.func.isRequired,
     }).isRequired,
   };
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-    };
-  }
+  state = {
+    loggingIn: false,
+  };
+  handleLoginFieldChange = (e) => {
+    const key = e.target.name;
+    const value = e.target.value;
+    this.props.actions.handleLoginFieldChange(key, value);
+  };
   submitClick = (e) => {
     e.preventDefault();
-    if (this.state.username === 'admin' && this.state.password === '123456') {
-      // eslint-disable-next-line no-console
-      console.log('Login successfuly');
-      this.props.routerActions.push('/lobby');
-    } else {
-      // eslint-disable-next-line no-console
-      console.log('Login fail.');
-    }
+    this.setState({
+      loggingIn: true,
+    });
+    this.props.actions.handleLoginFormSubmit().then().catch(() => {
+      this.setState({
+        loggingIn: false,
+      });
+    });
   };
 
   render() {
-    const loginContainerStyle = {
-      margin: '4% 30%',
-    };
-    const labelStyle = {
-      fontSize: 22,
-    };
+    const { email, password, errors } = this.props;
     return (
-      <MuiThemeProvider>
-        <div>
-          <AppBar
-            title="Login"
-          />
-          <div className="login-container" style={loginContainerStyle}>
-            <TextField
-              hintText="Enter your Username"
-              fullWidth
-              floatingLabelText="Username"
-              style={labelStyle}
-              onChange={(event, newValue) => this.setState({ username: newValue })}
-            />
-            <br />
-            <TextField
-              type="password"
-              hintText="Enter your Password"
-              fullWidth
-              floatingLabelText="Password"
-              style={labelStyle}
-              onChange={(event, newValue) => this.setState({ password: newValue })}
-            />
-            <br />
-            <br />
-            <RaisedButton label="Login" primary fullWidth onClick={this.submitClick} />
-          </div>
+      <div className="login-page">
+        <div className="login-container col-10 col-sm-8 col-md-6 col-lg-5 col-xl-4 align-self-center">
+          <form>
+            <div className="input-container">
+              <TextField
+                type="email"
+                name="email"
+                label="Email Address"
+                value={email}
+                onChange={this.handleLoginFieldChange}
+                errors={errors}
+              />
+            </div>
+            <div className="input-container">
+              <TextField
+                type="password"
+                name="password"
+                label="Password"
+                value={password}
+                onChange={this.handleLoginFieldChange}
+                errors={errors}
+              />
+            </div>
+            <div className="button-container">
+              <RaisedButton
+                type="submit"
+                label={this.state.loggingIn ? 'Logging In...' : 'Login'}
+                disabled={this.state.loggingIn}
+                primary
+                fullWidth
+                onClick={this.submitClick}
+              />
+            </div>
+          </form>
         </div>
-      </MuiThemeProvider>
+      </div>
     );
   }
 }

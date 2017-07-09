@@ -1,9 +1,15 @@
 import ChessBoard from '../chess-controller/classes/chess-board/ChessBoard.ts';
 
 export default {
+  auth: {
+    userId: '',
+    playerName: '',
+    isAuthenticated: false,
+  },
   loginPage: {
-    isLogin: false,
-    userName: 'jason106',
+    email: '',
+    password: '',
+    errors: {},
   },
   lobbyPage: {
     rooms: [
