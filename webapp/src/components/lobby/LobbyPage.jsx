@@ -1,5 +1,3 @@
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
 import {
   Table,
   TableBody,
@@ -9,33 +7,46 @@ import {
 } from 'material-ui/Table';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Col, Label, Input, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from '../common/MaterialTextField.jsx';
 import Room from './Room.jsx';
+import * as lobbyPageActions from '../../actions/lobbyActions';
 
+@connect(
+  ({ lobbyPage }) => ({
+    ...lobbyPage,
+  }),
+  dispatch => ({
+    actions: bindActionCreators(lobbyPageActions, dispatch),
+  }),
+)
 class LobbyPage extends React.Component {
   static propTypes = {
-    userName: PropTypes.string.isRequired,
+    roomName: PropTypes.string.isRequired,
+    newRoomModal: PropTypes.bool.isRequired,
     rooms: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       numPlayer: PropTypes.number.isRequired,
-      status: PropTypes.string.isRequired,
     })).isRequired,
+    actions: PropTypes.shape({
+      toggleRoomCreation: PropTypes.func.isRequired,
+      handleFormFieldChange: PropTypes.func.isRequired,
+    }).isRequired,
   };
-  constructor(props) {
-    super(props);
-    this.state = {
-      modal: false,
-    };
-  }
-  toggleModal = () => {
-    // toggle the modal
-    this.setState({
-      modal: !this.state.modal,
-    });
+  toggleNewRoomModal = () => {
+    this.props.actions.toggleRoomCreation();
   };
-  createRoomClick = () => {
+  handleFormFieldChange = (e) => {
+    const key = e.target.name;
+    const value = e.target.value;
+    this.props.actions.handleFormFieldChange(key, value);
+  };
+  createRoomSubmit = (e) => {
+    e.preventDefault();
     // eslint-disable-next-line no-console
     console.log('create a room, name=');
   };
@@ -46,65 +57,55 @@ class LobbyPage extends React.Component {
   };
 
   render() {
-    const containertableStyle = {
-      padding: '3% 5%',
-    };
     return (
-      <MuiThemeProvider>
-        <div>
-          <div className="modal-container">
-            <Modal isOpen={this.state.modal} toggle={this.toggleModal} className="create-room-modal">
-              <ModalHeader toggle={this.toggle}>
-                <br />
-                <div>Create a room</div>
-              </ModalHeader>
-              <ModalBody>
-                <Label sm={40}>Enter a name:</Label>
-                <Col sm={10}>
-                  <Input type="text" name="Enter a name:" id="roomName" placeholder="Room 1" />
-                </Col>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="primary" onClick={this.createRoomClick}>Create a room</Button>{' '}
-                <Button color="secondary" onClick={this.toggleModal}>Cancel</Button>
-              </ModalFooter>
-            </Modal>
-          </div>
-          <div>
-            <AppBar
-              title={`Welcome, ${this.props.userName}`}
-            />
-          </div>
-          <div>
-            <div className="lobby-Container" style={containertableStyle}>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHeaderColumn>ID</TableHeaderColumn>
-                    <TableHeaderColumn>Name</TableHeaderColumn>
-                    <TableHeaderColumn>Owner</TableHeaderColumn>
-                    <TableHeaderColumn>Number of player</TableHeaderColumn>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {this.props.rooms.map(room => (
-                    <Room key={room.id} {...room} />
-                  ))}
-                </TableBody>
-              </Table>
-              <button type="button" className="btn btn-success" onClick={this.toggleModal}>CREATE ROOM</button>
-            </div>
-          </div>
+      <div className="lobby-page page">
+        <div className="lobby-container container">
+          <Table>
+            <TableHeader
+              displaySelectAll={false}
+              adjustForCheckbox={false}
+            >
+              <TableRow>
+                <TableHeaderColumn>ID</TableHeaderColumn>
+                <TableHeaderColumn>Name</TableHeaderColumn>
+                <TableHeaderColumn>Owner</TableHeaderColumn>
+                <TableHeaderColumn>Number of player</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {this.props.rooms.map(room => (
+                <Room key={room.id} {...room} />
+              ))}
+            </TableBody>
+          </Table>
         </div>
-      </MuiThemeProvider>
+        <div className="modal-container">
+          <Modal isOpen={this.props.newRoomModal} toggle={this.toggleNewRoomModal} className="create-room-modal page">
+            <ModalHeader toggle={this.toggleNewRoomModal}>
+                Create New Room
+            </ModalHeader>
+            <ModalBody>
+              <form>
+                <div className="input-container">
+                  <TextField
+                    type="text"
+                    label="Room Name"
+                    name="roomName"
+                    value={this.props.roomName}
+                    onChange={this.handleFormFieldChange}
+                    errors={{}}
+                  />
+                </div>
+                <div className="btn-container text-right">
+                  <RaisedButton type="submit" label="Create" primary onClick={this.createRoomSubmit} />
+                </div>
+              </form>
+            </ModalBody>
+          </Modal>
+        </div>
+      </div>
     );
   }
 }
 
-
-const mapStateToProps = ({ lobbyPage, loginPage: { userName } }) => ({
-  ...lobbyPage,
-  userName,
-});
-
-export default connect(mapStateToProps)(LobbyPage);
+export default LobbyPage;

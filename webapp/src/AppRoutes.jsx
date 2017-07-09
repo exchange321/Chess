@@ -9,7 +9,7 @@ import AppContainer from './components/App.jsx';
 const AppRoutes = () => (
   <ConnectedRouter history={history}>
     <div>
-      <Route path="/" component={AppContainer} />
+      <Route component={AppContainer} />
     </div>
   </ConnectedRouter>
 );

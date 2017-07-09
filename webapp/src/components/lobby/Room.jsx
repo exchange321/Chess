@@ -6,10 +6,10 @@ import {
 } from 'material-ui/Table';
 
 // eslint-disable-next-line no-unused-vars
-const Room = ({ roomId, roomName, owner, numPlayer }) => (
+const Room = ({ id, name, owner, numPlayer }) => (
   <TableRow>
-    <TableRowColumn>{roomId}</TableRowColumn>
-    <TableRowColumn>{roomName}</TableRowColumn>
+    <TableRowColumn>{id}</TableRowColumn>
+    <TableRowColumn>{name}</TableRowColumn>
     <TableRowColumn>
       {owner.playerName}
     </TableRowColumn>
@@ -18,8 +18,8 @@ const Room = ({ roomId, roomName, owner, numPlayer }) => (
 );
 
 Room.propTypes = {
-  roomId: PropTypes.number.isRequired,
-  roomName: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
   numPlayer: PropTypes.number.isRequired,
   owner: PropTypes.shape({
     playerId: PropTypes.number.isRequired,

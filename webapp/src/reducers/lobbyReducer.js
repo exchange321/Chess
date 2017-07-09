@@ -16,6 +16,17 @@ const lobbyReducer = (state = initialState.lobbyPage, action) => {
         ],
       });
     }
+    case LOBBY_ACTIONS.TOGGLE_ROOM_CREATION: {
+      return {
+        ...state,
+        newRoomModal: !state.newRoomModal,
+      };
+    }
+    case LOBBY_ACTIONS.HANDLE_FORM_FIELD_CHANGE: {
+      return {
+        [action.key]: action.value,
+      };
+    }
     default: {
       return state;
     }

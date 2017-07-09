@@ -1,8 +1,8 @@
-import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import RaisedButton from 'material-ui/RaisedButton';
 import * as loginPageActions from '../../actions/loginActions';
 import TextField from '../common/MaterialTextField.jsx';
 

@@ -12,10 +12,12 @@ export default {
     errors: {},
   },
   lobbyPage: {
+    roomName: '',
+    newRoomModal: false,
     rooms: [
-      { roomId: 1, roomName: 'Room 1', numPlayer: 1, owner: { playerId: 123, playerName: 'deep blue' } },
-      { roomId: 2, roomName: 'Room 2', numPlayer: 2, owner: { playerId: 123, playerName: 'john' } },
-      { roomId: 3, roomName: 'Room 3', numPlayer: 2, owner: { playerId: 123, playerName: 'black_mage' } },
+      { id: 1, name: 'Room 1', numPlayer: 1, owner: { playerId: 123, playerName: 'deep blue' } },
+      { id: 2, name: 'Room 2', numPlayer: 2, owner: { playerId: 123, playerName: 'john' } },
+      { id: 3, name: 'Room 3', numPlayer: 2, owner: { playerId: 123, playerName: 'black_mage' } },
     ],
   },
   roomPage: {
