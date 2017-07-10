@@ -1,10 +1,3 @@
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-} from 'material-ui/Table';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -60,29 +53,14 @@ class LobbyPage extends React.Component {
     return (
       <div className="lobby-page page">
         <div className="lobby-container container">
-          <Table>
-            <TableHeader
-              displaySelectAll={false}
-              adjustForCheckbox={false}
-            >
-              <TableRow>
-                <TableHeaderColumn>ID</TableHeaderColumn>
-                <TableHeaderColumn>Name</TableHeaderColumn>
-                <TableHeaderColumn>Owner</TableHeaderColumn>
-                <TableHeaderColumn>Number of player</TableHeaderColumn>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {this.props.rooms.map(room => (
-                <Room key={room.id} {...room} />
-              ))}
-            </TableBody>
-          </Table>
+          {this.props.rooms.map(room => (
+            <Room key={room.id} {...room} />
+          ))}
         </div>
         <div className="modal-container">
           <Modal isOpen={this.props.newRoomModal} toggle={this.toggleNewRoomModal} className="create-room-modal page">
             <ModalHeader toggle={this.toggleNewRoomModal}>
-                Create New Room
+              Create New Room
             </ModalHeader>
             <ModalBody>
               <form>
