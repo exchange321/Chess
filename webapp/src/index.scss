@@ -136,6 +136,45 @@ div.login-page {
 
 /* LOGIN PAGE - END */
 
+/* LOBBY PAGE - START */
+div.lobby-page {
+  .lobby-container {
+    .room {
+      height: 60px;
+      border: 1px solid #aaa;
+      margin-bottom: 7px;
+      .name-wrapper {
+        float: left;
+        margin-left: 3px;
+        max-width: 200px;
+        .room-name {
+          font-size: 20px;
+          font-weight: bold;
+        }
+        .owner-name {
+
+        }
+      }
+      .icon-btn-wrapper {
+        width: 100%;
+        .icon-player {
+          float:right;
+          margin-right: 30px;
+          .fa-user {
+            padding: 15px;
+          }
+        }
+        .join-btn {
+          float: right;
+          width: 120px;
+        }
+      }
+    }
+  }
+}
+
+/* LOBBY PAGE - END */
+
 /* CHESS BOARD PAGE - START */
 
 div.chess-game-page {
