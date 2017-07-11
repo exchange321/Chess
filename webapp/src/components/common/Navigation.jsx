@@ -37,6 +37,20 @@ const Sidebar = ({ auth, chessGamePage, lobbyActions, chessGameActions }) => (
       />
       <Route
         exact
+        path="/room"
+        render={() => (
+          <AppBar
+            title={`Welcome, ${auth.playerName}`}
+            iconElementLeft={
+              <IconButton>
+                <FontIcon className="fa fa-chevron-left" />
+              </IconButton>
+            }
+          />
+        )}
+      />
+      <Route
+        exact
         path="/login"
         render={() => (
           <AppBar
