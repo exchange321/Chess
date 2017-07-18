@@ -140,34 +140,73 @@ div.login-page {
 div.lobby-page {
   .lobby-container {
     .room {
-      height: 60px;
-      border: 1px solid #aaa;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      margin-bottom: 15px;
-      .name-wrapper {
-        float: left;
-        margin-left: 3px;
-        max-width: 200px;
-        .room-name {
-          font-size: 20px;
-          font-weight: bold;
+      box-shadow: 0 0 1.5rem 0 rgba(0, 0, 0, .3);
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+      outline: 0;
+      p {
+        margin: 0;
+      }
+      .room-info {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        .room-avatar {
+          display: flex;
+          margin-right: -2.5rem;
+          .avatar-img {
+            flex: 0 0 65%;
+            background: lightgreen;
+            border-radius: 50%;
+          }
         }
-        .owner-name {
-
+        .name-wrapper {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          .room-name p {
+            font-size: 2rem;
+          }
+          .owner-name p {
+            position: relative;
+            padding-left: 1.5rem;
+            &:after {
+              font-family: 'FontAwesome';
+              content: '\f007';
+              display: block;
+              position: absolute;
+              left: 0;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+          }
         }
       }
       .icon-btn-wrapper {
-        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding-right: 0;
         .icon-player {
-          float:right;
-          margin-right: 30px;
-          .fa-user {
-            padding: 15px;
+          display: flex;
+          align-items: center;
+          i {
+            padding: .25rem;
           }
         }
         .join-btn {
-          float: right;
-          width: 120px;
+          display: flex;
+          align-items: stretch;
+          flex: 0 0 50%;
+          button.btn {
+            width: 100%;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            font-size: 1.5rem;
+            &:hover {
+              background: rgb(0, 188, 212);
+              color: white;
+              cursor: pointer;
+            }
+          }
         }
       }
     }
